@@ -1,4 +1,4 @@
-package Unit2_1.homework.tacoClass;
+package Unit2.homework.tacoClass;
 
 public class Taco {
     private String tacoGrain;

@@ -1,4 +1,4 @@
-package Unit2_1.homework.Tst;
+package Unit2.homework.Tst;
 
 public class Test {
     public static void main(String[] args) {String s1 = "ABCDEFGHI";

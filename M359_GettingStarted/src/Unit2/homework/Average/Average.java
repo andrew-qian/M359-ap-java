@@ -1,4 +1,4 @@
-package Unit2_1.homework.Average;
+package Unit2.homework.Average;
 
 public class Average {
 

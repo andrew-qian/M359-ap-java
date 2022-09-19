@@ -1,4 +1,4 @@
-package Unit2_1.homework.Pythagorean;
+package Unit2.homework.Pythagorean;
 
 import static java.lang.Math.sqrt;
 

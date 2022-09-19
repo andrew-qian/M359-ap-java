@@ -1,4 +1,4 @@
-package Unit2_1.homework;
+package Unit2.homework;
 
 public class Fruit {
     private String name;
