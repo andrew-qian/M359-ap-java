@@ -7,7 +7,12 @@ package Unit3.examples;
  */
 public class PizzaTester {
     public static void main(String[] args) {
-        System.out.println("hello");
-        System.out.println("hello again");
+        Pizza dd = new Pizza("Lou Malnatis", 12, 2, true);
+        Pizza thin = new Pizza("Domino's", 16, 2, false);
+        Pizza thinCheese = new Pizza("Domino's", 14, false);
+        System.out.println(dd);
+        System.out.println(thin);
+        System.out.println(thinCheese);
+
     }
 }
