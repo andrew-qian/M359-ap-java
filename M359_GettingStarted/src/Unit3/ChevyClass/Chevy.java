@@ -63,4 +63,92 @@ public class Chevy {
         }
         return false;
     }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
+    public double getFuelEfficiency() {
+        return fuelEfficiency;
+    }
+
+    public void setFuelEfficiency(double fuelEfficiency) {
+        this.fuelEfficiency = fuelEfficiency;
+    }
+
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public double getPriceWithUpgrades() {
+        return priceWithUpgrades;
+    }
+
+    public void setPriceWithUpgrades(double priceWithUpgrades) {
+        this.priceWithUpgrades = priceWithUpgrades;
+    }
+
+    public double getGrandTotal() {
+        return grandTotal;
+    }
+
+    public void setGrandTotal(double grandTotal) {
+        this.grandTotal = grandTotal;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public boolean isLuxuryPackageStatus() {
+        return luxuryPackageStatus;
+    }
+
+    public void setLuxuryPackageStatus(boolean luxuryPackageStatus) {
+        this.luxuryPackageStatus = luxuryPackageStatus;
+    }
+
+    public boolean isFourWDPackageStatus() {
+        return fourWDPackageStatus;
+    }
+
+    public void setFourWDPackageStatus(boolean fourWDPackageStatus) {
+        this.fourWDPackageStatus = fourWDPackageStatus;
+    }
+
+    public boolean isSportsPackageStatus() {
+        return sportsPackageStatus;
+    }
+
+    public void setSportsPackageStatus(boolean sportsPackageStatus) {
+        this.sportsPackageStatus = sportsPackageStatus;
+    }
 }
