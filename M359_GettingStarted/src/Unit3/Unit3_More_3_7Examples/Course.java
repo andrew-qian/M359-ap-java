@@ -16,7 +16,14 @@ public class Course {
     }
 
     public int compareTo(Course other) {
-        return this.numStudentsEnrolled - other.numStudentsEnrolled;
+        //return this.numStudentsEnrolled - other.numStudentsEnrolled;
+        int diff = this.classTitle.compareTo(other.classTitle);
+        if (diff != 0){
+            return diff;
+        }
+        else {
+            return this.numStudentsEnrolled - other.numStudentsEnrolled;
+        }
     }
 
 
