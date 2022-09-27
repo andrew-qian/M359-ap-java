@@ -24,21 +24,43 @@ public class Chevy {
         this.year = 2021;
         this.mileage = 0;
         this.fuelEfficiency = 35;
+        this.basePrice = 16000;
+        this.priceWithUpgrades = 0;
+        this.grandTotal = 0;
+        this.model = "Trax";
+        this.color = "White";
+        this.luxuryPackageStatus = false;
+        this.fourWDPackageStatus = false;
+        this.sportsPackageStatus = false;
 
     }
 
-    public Chevy(int year, int mileage, double fuelEfficiency, double basePrice, double priceWithUpgrades, double grandTotal, String model, String color,
-                 boolean luxuryPackageStatus, boolean fourWDPackageStatus, boolean sportsPackageStatus) {
+    public Chevy(int year, int mileage, double fuelEfficiency,
+                 double basePrice, String model, String color,
+                 boolean luxuryPackageStatus, boolean fourWDPackageStatus,
+                 boolean sportsPackageStatus) {
         this.year = year;
         this.mileage = mileage;
         this.fuelEfficiency = fuelEfficiency;
         this.basePrice = basePrice;
-        this.priceWithUpgrades = priceWithUpgrades;
-        this.grandTotal = grandTotal;
+        this.priceWithUpgrades = 0;
+        this.grandTotal = 0;
         this.model = model;
         this.color = color;
         this.luxuryPackageStatus = luxuryPackageStatus;
         this.fourWDPackageStatus = fourWDPackageStatus;
         this.sportsPackageStatus = sportsPackageStatus;
+    }
+
+    public int compareTo(Chevy other){
+        return this.mileage - other.mileage;
+    }
+
+    public boolean equals(Chevy other){
+        if (this.model.equals(other.model) && this.color.equals(other.color)){
+            return (this.mileage >= 200 && other.mileage >= 200)
+                    || (this.mileage < 200 && other.mileage < 200);
+        }
+        return false;
     }
 }
