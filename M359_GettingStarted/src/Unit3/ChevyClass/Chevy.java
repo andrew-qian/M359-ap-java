@@ -2,19 +2,19 @@ package Unit3.ChevyClass;
 
 public class Chevy {
     private int year;
-    private int mileage;
+    private int miles;
     private double fuelEfficiency;
-    private double basePrice;
+    private double Base_price;
     private double priceWithUpgrades;
     private double grandTotal;
     private String model;
     private String color;
-    private boolean luxuryPackageStatus;
-    private boolean fourWDPackageStatus;
+    private boolean HasLuxuryPkg;
+    private boolean Has4WDPkg;
     private boolean sportsPackageStatus;
 
     private static final String VEHICLE_MAKE = "Chevrolet";
-    private static final double TAX_RATE = 12.2;
+    private static final double TAX_RATE = 1.122;
     private static final double LUXURY_PRICE_INCREASE = 1.2;
     private static final int FOUR_WD_PRICE_INCREASE = 3500;
     private static final double SPORTS_PRICE_INCREASE = 1.15;
@@ -22,46 +22,89 @@ public class Chevy {
 
     public Chevy(){
         this.year = 2021;
-        this.mileage = 0;
+        this.miles = 0;
         this.fuelEfficiency = 35;
-        this.basePrice = 16000;
-        this.priceWithUpgrades = 0;
+        this.Base_price = 16000;
+        this.priceWithUpgrades = Base_price;
         this.grandTotal = 0;
         this.model = "Trax";
         this.color = "White";
-        this.luxuryPackageStatus = false;
-        this.fourWDPackageStatus = false;
+        this.HasLuxuryPkg = false;
+        this.Has4WDPkg = false;
         this.sportsPackageStatus = false;
 
     }
 
-    public Chevy(int year, int mileage, double fuelEfficiency,
-                 double basePrice, String model, String color,
-                 boolean luxuryPackageStatus, boolean fourWDPackageStatus,
-                 boolean sportsPackageStatus) {
+    public Chevy(int year, int miles, double fuelEfficiency, double Base_price, String model, String color,
+                 boolean HasLuxuryPkg, boolean Has4WDPkg, boolean sportsPackageStatus) {
         this.year = year;
-        this.mileage = mileage;
+        this.miles = miles;
         this.fuelEfficiency = fuelEfficiency;
-        this.basePrice = basePrice;
-        this.priceWithUpgrades = 0;
+        this.Base_price = Base_price;
+        this.priceWithUpgrades = Base_price;
         this.grandTotal = 0;
         this.model = model;
         this.color = color;
-        this.luxuryPackageStatus = luxuryPackageStatus;
-        this.fourWDPackageStatus = fourWDPackageStatus;
+        this.HasLuxuryPkg = HasLuxuryPkg;
+        this.Has4WDPkg = Has4WDPkg;
         this.sportsPackageStatus = sportsPackageStatus;
     }
 
     public int compareTo(Chevy other){
-        return this.mileage - other.mileage;
+        return this.miles - other.miles;
     }
 
     public boolean equals(Chevy other){
         if (this.model.equals(other.model) && this.color.equals(other.color)){
-            return (this.mileage >= 200 && other.mileage >= 200)
-                    || (this.mileage < 200 && other.mileage < 200);
+            return (this.miles >= 200 && other.miles >= 200)
+                    || (this.miles < 200 && other.miles < 200);
         }
         return false;
+    }
+
+    public String toString(){
+        if (sportsPackageStatus){
+            fuelEfficiency = fuelEfficiency*SPORTS_FUEL_DEDUCTION;
+        }
+        String str = "**************************************************\n";
+        str += year + " " + VEHICLE_MAKE + " " + model + " (" + color + ")\n";
+        str += "\tBASE PRICE:\t\t\t\t$" + Base_price + "\n";
+        str += "\tMILES: \t\t\t\t\t" + miles + "\n";
+        str += "\tFUEL EFFICIENCY:\t\t" + fuelEfficiency + "\n";
+        str += "\tPACKAGES:\n";
+        if (HasLuxuryPkg){
+            str += "\t\t- Luxury Package\n";
+            priceWithUpgrades = priceWithUpgrades*LUXURY_PRICE_INCREASE;
+        }
+        if (Has4WDPkg){
+            str += "\t\t- 4WD Package\n";
+            priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
+        }
+        if (sportsPackageStatus){
+            str += "\t\t- Sports Package\n";
+            priceWithUpgrades = priceWithUpgrades* SPORTS_PRICE_INCREASE;
+        }
+        if (!sportsPackageStatus && !Has4WDPkg && !HasLuxuryPkg){
+            str += "\t\t- None\n";
+        }
+        grandTotal = priceWithUpgrades*TAX_RATE;
+        str += "\n\tPRICE WITH UPGRADES:\t\t$" + priceWithUpgrades + "\n";
+        str += "\tFINAL PRICE WITH TAX:\t\t$" + grandTotal + "\n";
+        str += "**************************************************\n";
+        return str;
+    }
+
+    public void calcPrice(){
+        if (HasLuxuryPkg){
+            priceWithUpgrades = priceWithUpgrades + Base_price*LUXURY_PRICE_INCREASE;
+        }
+        if (Has4WDPkg){
+            priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
+        }
+        if (sportsPackageStatus){
+            priceWithUpgrades = priceWithUpgrades + Base_price* SPORTS_PRICE_INCREASE;
+        }
+
     }
 
     public int getYear() {
@@ -72,12 +115,12 @@ public class Chevy {
         this.year = year;
     }
 
-    public int getMileage() {
-        return mileage;
+    public int getMiles() {
+        return miles;
     }
 
-    public void setMileage(int mileage) {
-        this.mileage = mileage;
+    public void setMiles(int miles) {
+        this.miles = miles;
     }
 
     public double getFuelEfficiency() {
@@ -88,12 +131,12 @@ public class Chevy {
         this.fuelEfficiency = fuelEfficiency;
     }
 
-    public double getBasePrice() {
-        return basePrice;
+    public double getBase_price() {
+        return Base_price;
     }
 
-    public void setBasePrice(double basePrice) {
-        this.basePrice = basePrice;
+    public void setBase_price(double Base_price) {
+        this.Base_price = Base_price;
     }
 
     public double getPriceWithUpgrades() {
@@ -128,20 +171,20 @@ public class Chevy {
         this.color = color;
     }
 
-    public boolean isLuxuryPackageStatus() {
-        return luxuryPackageStatus;
+    public boolean isHasLuxuryPkg() {
+        return HasLuxuryPkg;
     }
 
-    public void setLuxuryPackageStatus(boolean luxuryPackageStatus) {
-        this.luxuryPackageStatus = luxuryPackageStatus;
+    public void setHasLuxuryPkg(boolean HasLuxuryPkg) {
+        this.HasLuxuryPkg = HasLuxuryPkg;
     }
 
-    public boolean isFourWDPackageStatus() {
-        return fourWDPackageStatus;
+    public boolean isHas4WDPkg() {
+        return Has4WDPkg;
     }
 
-    public void setFourWDPackageStatus(boolean fourWDPackageStatus) {
-        this.fourWDPackageStatus = fourWDPackageStatus;
+    public void setHas4WDPkg(boolean Has4WDPkg) {
+        this.Has4WDPkg = Has4WDPkg;
     }
 
     public boolean isSportsPackageStatus() {
