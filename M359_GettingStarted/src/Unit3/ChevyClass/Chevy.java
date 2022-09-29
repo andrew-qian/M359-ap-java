@@ -15,23 +15,32 @@ public class Chevy {
 
     private static final String VEHICLE_MAKE = "Chevrolet";
     private static final double TAX_RATE = 1.122;
-    private static final double LUXURY_PRICE_INCREASE = 1.2;
+    private static final double LUXURY_PRICE_INCREASE = .2;
     private static final int FOUR_WD_PRICE_INCREASE = 3500;
-    private static final double SPORTS_PRICE_INCREASE = 1.15;
+    private static final double SPORTS_PRICE_INCREASE = .15;
     private static final double SPORTS_FUEL_DEDUCTION = .8;
 
     public Chevy(){
-        this.year = 2021;
-        this.miles = 0;
-        this.fuelEfficiency = 35;
-        this.Base_price = 16000;
+        year = 2021;
+        miles = 0;
+        fuelEfficiency = 35;
+        Base_price = 16000;
         this.priceWithUpgrades = Base_price;
-        this.grandTotal = 0;
-        this.model = "Trax";
-        this.color = "White";
-        this.HasLuxuryPkg = false;
-        this.Has4WDPkg = false;
-        this.sportsPackageStatus = false;
+        if (HasLuxuryPkg){
+            priceWithUpgrades = priceWithUpgrades + Base_price*LUXURY_PRICE_INCREASE;
+        }
+        if (Has4WDPkg){
+            priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
+        }
+        if (sportsPackageStatus){
+            priceWithUpgrades = priceWithUpgrades + Base_price* SPORTS_PRICE_INCREASE;
+        }
+        grandTotal = priceWithUpgrades*TAX_RATE;
+        model = "Trax";
+        color = "White";
+        HasLuxuryPkg = false;
+        Has4WDPkg = false;
+        sportsPackageStatus = false;
 
     }
 
@@ -42,7 +51,16 @@ public class Chevy {
         this.fuelEfficiency = fuelEfficiency;
         this.Base_price = Base_price;
         this.priceWithUpgrades = Base_price;
-        this.grandTotal = 0;
+        if (HasLuxuryPkg){
+            priceWithUpgrades = priceWithUpgrades + Base_price*LUXURY_PRICE_INCREASE;
+        }
+        if (Has4WDPkg){
+            priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
+        }
+        if (sportsPackageStatus){
+            priceWithUpgrades = priceWithUpgrades + Base_price* SPORTS_PRICE_INCREASE;
+        }
+        grandTotal = priceWithUpgrades*TAX_RATE;
         this.model = model;
         this.color = color;
         this.HasLuxuryPkg = HasLuxuryPkg;
@@ -68,24 +86,31 @@ public class Chevy {
         }
         String str = "**************************************************\n";
         str += year + " " + VEHICLE_MAKE + " " + model + " (" + color + ")\n";
-        str += "\tBASE PRICE:\t\t\t\t$" + Base_price + "\n";
-        str += "\tMILES: \t\t\t\t\t" + miles + "\n";
-        str += "\tFUEL EFFICIENCY:\t\t" + fuelEfficiency + "\n";
+        str += "\tBASE PRICE:\t\t\t\t\t$" + Base_price + "\n";
+        str += "\tMILES: \t\t\t\t\t\t" + miles + "\n";
+        str += "\tFUEL EFFICIENCY:\t\t\t" + fuelEfficiency + " mpg\n";
         str += "\tPACKAGES:\n";
         if (HasLuxuryPkg){
             str += "\t\t- Luxury Package\n";
-            priceWithUpgrades = priceWithUpgrades*LUXURY_PRICE_INCREASE;
         }
         if (Has4WDPkg){
             str += "\t\t- 4WD Package\n";
-            priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
         }
         if (sportsPackageStatus){
             str += "\t\t- Sports Package\n";
-            priceWithUpgrades = priceWithUpgrades* SPORTS_PRICE_INCREASE;
         }
         if (!sportsPackageStatus && !Has4WDPkg && !HasLuxuryPkg){
             str += "\t\t- None\n";
+        }
+        priceWithUpgrades = Base_price;
+        if (HasLuxuryPkg){
+            priceWithUpgrades = priceWithUpgrades + Base_price*LUXURY_PRICE_INCREASE;
+        }
+        if (Has4WDPkg){
+            priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
+        }
+        if (sportsPackageStatus){
+            priceWithUpgrades = priceWithUpgrades + Base_price* SPORTS_PRICE_INCREASE;
         }
         grandTotal = priceWithUpgrades*TAX_RATE;
         str += "\n\tPRICE WITH UPGRADES:\t\t$" + priceWithUpgrades + "\n";
@@ -96,15 +121,15 @@ public class Chevy {
 
     public void calcPrice(){
         if (HasLuxuryPkg){
-            priceWithUpgrades = priceWithUpgrades + Base_price*LUXURY_PRICE_INCREASE;
+            priceWithUpgrades = priceWithUpgrades + Base_price * LUXURY_PRICE_INCREASE;
         }
         if (Has4WDPkg){
             priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
         }
         if (sportsPackageStatus){
-            priceWithUpgrades = priceWithUpgrades + Base_price* SPORTS_PRICE_INCREASE;
+            priceWithUpgrades = priceWithUpgrades + Base_price * SPORTS_PRICE_INCREASE;
         }
-
+        grandTotal = priceWithUpgrades * TAX_RATE;
     }
 
     public int getYear() {
