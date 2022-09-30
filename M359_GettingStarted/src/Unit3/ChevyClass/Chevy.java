@@ -93,17 +93,7 @@ public class Chevy {
         if (!sportsPackageStatus && !Has4WDPkg && !HasLuxuryPkg){
             str += "\t\t- None\n";
         }
-        priceWithUpgrades = Base_price;
-        if (HasLuxuryPkg){
-            priceWithUpgrades = priceWithUpgrades + Base_price*LUXURY_PRICE_INCREASE;
-        }
-        if (Has4WDPkg){
-            priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
-        }
-        if (sportsPackageStatus){
-            priceWithUpgrades = priceWithUpgrades + Base_price* SPORTS_PRICE_INCREASE;
-        }
-        grandTotal = priceWithUpgrades*TAX_RATE;
+        calcPrice();
         str += "\n\tPRICE WITH UPGRADES:\t\t$" + priceWithUpgrades + "\n";
         str += "\tFINAL PRICE WITH TAX:\t\t$" + grandTotal + "\n";
         str += "**************************************************\n";
@@ -111,6 +101,7 @@ public class Chevy {
     }
 
     public void calcPrice(){
+        priceWithUpgrades = Base_price;
         if (HasLuxuryPkg){
             priceWithUpgrades = priceWithUpgrades + Base_price * LUXURY_PRICE_INCREASE;
         }
