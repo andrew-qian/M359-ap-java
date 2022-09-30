@@ -26,15 +26,6 @@ public class Chevy {
         fuelEfficiency = 35;
         Base_price = 16000;
         this.priceWithUpgrades = Base_price;
-        if (HasLuxuryPkg){
-            priceWithUpgrades = priceWithUpgrades + Base_price*LUXURY_PRICE_INCREASE;
-        }
-        if (Has4WDPkg){
-            priceWithUpgrades += FOUR_WD_PRICE_INCREASE;
-        }
-        if (sportsPackageStatus){
-            priceWithUpgrades = priceWithUpgrades + Base_price* SPORTS_PRICE_INCREASE;
-        }
         grandTotal = priceWithUpgrades*TAX_RATE;
         model = "Trax";
         color = "White";
