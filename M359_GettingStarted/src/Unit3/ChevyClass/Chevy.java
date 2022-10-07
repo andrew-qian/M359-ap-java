@@ -99,7 +99,6 @@ public class Chevy {
         str += "**************************************************\n";
         return str;
     }
-
     public void calcPrice(){
         priceWithUpgrades = Base_price;
         if (HasLuxuryPkg){
