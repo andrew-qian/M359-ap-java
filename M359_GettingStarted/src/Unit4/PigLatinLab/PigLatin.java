@@ -11,11 +11,16 @@ public class PigLatin {
     //if vowel  add yay to the end
     // str ans = str + yay;
 
-    public static void translateWordToPigLatin(String str){
+    public static void toPigLatin(String str){
+        int index = 0;
+        for (int i )
+    }
+
+    public static String translateWordToPigLatin(String str){
         String ans = "";
-        if (str.startsWith("a") || str.startsWith("e") || str.startsWith("i")
-                || str.startsWith("o") || str.startsWith("u")){
+        if (checkFirstVowel(str)){
             ans = str + "yay";
+            return ans;
         }
         else {
             String chunk = "";
@@ -28,7 +33,16 @@ public class PigLatin {
                     break;
                 }
             }
-            ans = str.substring(index,str.length()-1) + chunk + "ay";
+            ans = str.substring(index) + chunk + "ay";
+            return ans;
         }
+    }
+
+    public static boolean checkFirstVowel(String str) {
+        if (str.startsWith("a") || str.startsWith("e") || str.startsWith("i")
+                || str.startsWith("o") || str.startsWith("u")) {
+            return true;
+        }
+        return false;
     }
 }
