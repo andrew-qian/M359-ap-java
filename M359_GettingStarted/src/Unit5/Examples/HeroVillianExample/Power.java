@@ -1,33 +1,34 @@
 package Unit5.Examples.HeroVillianExample;
 
 public class Power {
-    private String powerName;
-    private int powerStrength;
+    private String name;
+    private int strength;
 
-    public Power(String powerName, int powerStrength) {
-        this.powerName = powerName;
-        this.powerStrength = powerStrength;
+    public Power(String name, int strength) {
+        this.name = name;
+        this.strength = strength;
     }
 
     public String toString() {
-        return "The power is: " + powerName + " with a strength of: " + powerStrength;
+        return "The power is: " + name + " with a strength of: " + strength;
     }
 
 
 
-    public String getPowerName() {
-        return powerName;
+
+    public String getName() {
+        return name;
     }
 
-    public void setPowerName(String powerName) {
-        this.powerName = powerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getPowerStrength() {
-        return powerStrength;
+    public int getStrength() {
+        return strength;
     }
 
-    public void setPowerStrength(int powerStrength) {
-        this.powerStrength = powerStrength;
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 }
