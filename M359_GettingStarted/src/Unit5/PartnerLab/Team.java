@@ -3,8 +3,6 @@ package Unit5.PartnerLab;
 public class Team {
     private int defenseRanking, offenseRanking, wins;
     private String teamName;
-    private static int totalDefenseRanking = 0;
-    private static int totalOffenseRanking = 0;
 
 
 
@@ -13,8 +11,6 @@ public class Team {
         this.offenseRanking = offenseRanking;
         this.teamName = teamName;
         wins = 0;
-        totalDefenseRanking += defenseRanking;
-        totalOffenseRanking += offenseRanking;
     }
 
     public Team(String teamName) {

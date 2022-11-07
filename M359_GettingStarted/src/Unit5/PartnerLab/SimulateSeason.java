@@ -2,9 +2,10 @@ package Unit5.PartnerLab;
 
 public class SimulateSeason {
     private static int totalWins = 0;
+    private static int years = 0;
 
-    public static boolean simulateGame(Team x) { // add win counter method that sums all trues and falses and adds together wins and losses
-        Team y = new Team();
+    public static boolean simulateGame(Team x, Team y) { // add win counter method that sums all trues and falses and adds together wins and losses
+
         // random team
         double winChance = 0;
         int randInt = (int) (Math.random() * 100 + 1);
@@ -39,28 +40,36 @@ public class SimulateSeason {
         }
     }
 
-    public static String simulateSeason(Team x) { // instead of returning the total record, return a win loss column with the rankings of the teams being played
+    public static String simulateSeason(Team x) {
+        x.setWins(0);// instead of returning the total record, return a win loss column with the rankings of the teams being played
         String result = "Win-Loss Column\n";
+        years++;
+        result += "Year: " +years + "\n";
         for (int i = 1; i < 18; i++) {
-            boolean gameResult = simulateGame(x);
+            Team y = new Team();
+            boolean gameResult = simulateGame(x, y);
             if (gameResult) {
-                result += "Week " + i + ": " + "(W)\n";
+                result += "Week " + i + ": " + "(W) | (Played Team With Offense Ranking: " + y.getOffenseRanking() + " and Defense Ranking: " +y.getDefenseRanking() + ")\n";
                 totalWins++;
                 x.setWins(x.getWins() + 1);
             }
             else {
-                result += "Week " + i + ": " + "(L)\n";
+                result += "Week " + i + ": " + "(L) | (Played Team With Offense Ranking: " + y.getOffenseRanking() + " and Defense Ranking: " +y.getDefenseRanking() + ")\n";
             }
-
                 // append W/L to result
 
             }
-            result += "Team: " + x.getTeamName() + "\nWins: " + x.getWins() + '\n' + "Losses: " + (17 - x.getWins());
-            return result;
+        double winLossPercentage = (double)(x.getWins())/(17);
+        result += "Team: " + x.getTeamName() + "\nWins: " + x.getWins() + '\n' + "Losses: " + (17 - x.getWins()) + "\nWin Percentage" + winLossPercentage;
+        return result;
             //totalWins = x.getWins() / 5;
             //return "Team: " + x.getTeamName() + "\nWins: " + totalWins + '\n' + "Losses: " + (17-totalWins);
             // closing time, every new beginning is somethings beginning end,
             // seahawks bad ratio L + bozo
+        }
+        public static String franchiseLog(){
+            double winLossPercentage = (double)(totalWins)/((years*17));
+            return "Years Played: " + years + "\nTotal Wins: " + totalWins + "\nTotal Losses: " + ((years*17)-totalWins) + "\nTotal Win Percentage" + winLossPercentage;
         }
 
 }
