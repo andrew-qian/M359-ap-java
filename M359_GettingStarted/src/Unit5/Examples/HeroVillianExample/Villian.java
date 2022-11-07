@@ -4,17 +4,28 @@ public class Villian {
     private String villianName;
     private Power villianPower;
 
+    private static int numVillians = 0;
+    private static int totalVillianStrength = 0;
+
     public Villian(String villianName, Power villianPower) {
         this.villianName = villianName;
         this.villianPower = villianPower;
+        numVillians++;
+        totalVillianStrength += villianPower.getStrength();
     }
 
     public Villian(String villianName, String powerName, int powerStrength) {
         this.villianName = villianName;
         this.villianPower = new Power(powerName, powerStrength);
+
+        numVillians++;
+        totalVillianStrength += villianPower.getStrength();
     }
 
     public void updateStrengthAfterBattle(double percent) {
+        int x = (int)((1-percent) * villianPower.getStrength());
+        totalVillianStrength -= x;
+
         villianPower.setStrength((int)(percent * villianPower.getStrength()));
     }
 
@@ -43,5 +54,13 @@ public class Villian {
 
     public void setVillianPower(Power villianPower) {
         this.villianPower = villianPower;
+    }
+
+    public static int getNumVillians() {
+        return numVillians;
+    }
+
+    public static int getTotalVillianStrength(){
+        return totalVillianStrength;
     }
 }

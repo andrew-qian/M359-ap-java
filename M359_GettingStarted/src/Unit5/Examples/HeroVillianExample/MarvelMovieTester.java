@@ -11,6 +11,8 @@ public class MarvelMovieTester {
 
         epicBattle(ironMan, thanos, 20);
 
+        System.out.println(Villian.getTotalVillianStrength());
+
     }
 
     // IF you type /** and press enter, IntelliJ will start your JavaDoc comments for you

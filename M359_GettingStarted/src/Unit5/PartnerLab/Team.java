@@ -5,7 +5,7 @@ public class Team {
     private String teamName;
 
 
-    public Team(int defenseRanking, int offenseRanking, String teamName) {
+    public Team(int offenseRanking, int defenseRanking, String teamName) {
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
         this.teamName = teamName;
@@ -49,5 +49,13 @@ public class Team {
 
     public void setTeamName(String teamName) {
         this.teamName = teamName;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 }
