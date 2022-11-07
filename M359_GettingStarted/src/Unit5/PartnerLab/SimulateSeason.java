@@ -1,14 +1,11 @@
 package Unit5.PartnerLab;
 
 public class SimulateSeason {
-    public static void winCounter(Team x) {
-        if (simulateGame(x)) {
-            x.setWins(x.getWins() + 1);
-        }
-    }
+    private static int totalWins = 0;
 
     public static boolean simulateGame(Team x) { // add win counter method that sums all trues and falses and adds together wins and losses
-        Team y = new Team(); // random team
+        Team y = new Team();
+        // random team
         double winChance = 0;
         int randInt = (int) (Math.random() * 100 + 1);
 
@@ -43,19 +40,27 @@ public class SimulateSeason {
     }
 
     public static String simulateSeason(Team x) { // instead of returning the total record, return a win loss column with the rankings of the teams being played
-        int totalWins = 0;
-        String result = "";
-        for (int j = 0; j < 5; j++) {
-            for (int i = 0; i < 18; i++) {
-                simulateGame(x);
-                winCounter(x);
+        String result = "Win-Loss Column\n";
+        for (int i = 1; i < 18; i++) {
+            boolean gameResult = simulateGame(x);
+            if (gameResult) {
+                result += "Week " + i + ": " + "(W)\n";
+                totalWins++;
+                x.setWins(x.getWins() + 1);
+            }
+            else {
+                result += "Week " + i + ": " + "(L)\n";
+            }
+
                 // append W/L to result
 
             }
+            result += "Team: " + x.getTeamName() + "\nWins: " + x.getWins() + '\n' + "Losses: " + (17 - x.getWins());
+            return result;
+            //totalWins = x.getWins() / 5;
+            //return "Team: " + x.getTeamName() + "\nWins: " + totalWins + '\n' + "Losses: " + (17-totalWins);
+            // closing time, every new beginning is somethings beginning end,
+            // seahawks bad ratio L + bozo
         }
-        totalWins = x.getWins() / 5;
-        return "Team: " + x.getTeamName() + "\nWins: " + totalWins + '\n' + "Losses: " + (17-totalWins);
-        // closing time, every new beginning is somethings beginning end,
-        // seahawks bad ratio L + bozo
-    }
+
 }
