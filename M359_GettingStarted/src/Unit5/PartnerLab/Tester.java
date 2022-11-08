@@ -10,8 +10,6 @@ public class Tester {
             System.out.println(simulateSeason(bears));
         }
         System.out.println(franchiseLog());
-
-
     }
     // bears better
     // BEAR DOWN ANDREW
