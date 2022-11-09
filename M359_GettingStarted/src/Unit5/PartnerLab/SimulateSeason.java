@@ -4,11 +4,15 @@ public class SimulateSeason {
     private static int totalWins = 0;
     private static int years = 0;
 
-    public static boolean simulateGame(Team x, Team y) { // add win counter method that sums all trues and falses and adds together wins and losses
-
-        // random team
-        double winChance = 0;
-        int randInt = (int) (Math.random() * 100 + 1);
+    /**
+     * Helper method for simulateSeason, simulates a single game between the Team object initiated and a randomly generated team
+     * @param x Team object that is already initiated
+     * @param y randomly generated team that team x plays in a game
+     * @return Returns true or false based on whether team x beats team y
+     */
+    public static boolean simulateGame(Team x, Team y) {
+        double winChance;
+        int randInt = (int)(Math.random() * 100 + 1);
 
         int xDefense = x.getDefenseRanking();
         int xOffense = x.getOffenseRanking();
@@ -40,11 +44,19 @@ public class SimulateSeason {
         }
     }
 
+    /**
+     * Runs simulateGame 17 times and then sums up the wins/losses and win percentage
+     * @param x Team object that is already initiated
+     * @return Returns a printout that shows the ranking of the team played every game, whether it was a win or loss,
+     * and a total win/loss record of the season and win percentage.
+     */
     public static String simulateSeason(Team x) {
         String result = "Team: " + x.getTeamName() + " (Offense #" + x.getOffenseRanking() + ", Defense #" + x.getDefenseRanking() + ")\n";
-        x.setWins(0);// instead of returning the total record, return a win loss column with the rankings of the teams being played
+        x.setWins(0);
         years++;
-        result += "Year: " +years + "\n";
+        result += "Year: " + years + "\n";
+        int randInt = (int)(Math.random() * 100 + 1);
+
         for (int i = 1; i < 18; i++) {
             Team y = new Team();
             boolean gameResult = simulateGame(x, y);
@@ -56,20 +68,41 @@ public class SimulateSeason {
             else {
                 result += "Week " + i + ": " + "(L) (Offence #" + y.getOffenseRanking() + ", Defense #" +y.getDefenseRanking() + ")\n";
             }
-                // append W/L to result
+
+        }
+
+        //playoffs
+        boolean SBWin = false;
+        if (x.getWins() > 11){
+            Team y = new Team(16,16);
+            int iterations = 1;
+            boolean playoffGameResult = simulateGame(x,y);
+            while (iterations <= 4 && playoffGameResult){
+                playoffGameResult = simulateGame(x,y);
+                iterations++;
+            }
+            if (iterations == 4){
+                x.setSbWins(x.getSbWins() + 1);
+                SBWin = true;
 
             }
-        double winLossPercentage = (double)(x.getWins())/(17);
-        result += "Wins: " + x.getWins() + '\n' + "Losses: " + (17 - x.getWins()) + "\nWin Percentage " + winLossPercentage + "\n";
+        }
+
+        double winLossPercentage = Math.round((double)(x.getWins())/(17)*100 * 100.0) / 100.0;;
+        result += "\nRecord: " + x.getWins() + "-" + (17 - x.getWins()) + " (" + winLossPercentage + "%)\n";
+        if (SBWin){
+            result += "Won Super Bowl!";
+        }
         return result;
-            //totalWins = x.getWins() / 5;
-            //return "Team: " + x.getTeamName() + "\nWins: " + totalWins + '\n' + "Losses: " + (17-totalWins);
-            // closing time, every new beginning is somethings beginning end,
-            // seahawks bad ratio L + bozo
         }
-        public static String franchiseLog(){
-            double winLossPercentage = (double)(totalWins)/((years*17));
-            return "Years Played: " + years + "\nTotal Wins: " + totalWins + "\nTotal Losses: " + ((years*17)-totalWins) + "\nTotal Win Percentage " + winLossPercentage + "\n";
-        }
+
+    /**
+     * Checks the total wins/losses and win percentage through all years
+      * @return Returns win loss percentage and total wins/losses
+     */
+    public static String franchiseLog(){
+        double winLossPercentage = Math.round((double)(totalWins)/((years*17)) * 100 * 100.0) / 100.0;
+        return "Years Played: " + years + "\nTotal Record: " + totalWins + "-" + ((years*17)-totalWins) + " (" + winLossPercentage + "%)";
+    }
 
 }

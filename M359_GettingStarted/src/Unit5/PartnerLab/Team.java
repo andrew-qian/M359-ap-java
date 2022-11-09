@@ -1,7 +1,7 @@
 package Unit5.PartnerLab;
 
 public class Team {
-    private int defenseRanking, offenseRanking, wins;
+    private int defenseRanking, offenseRanking, wins, sbWins;
     private String teamName;
 
 
@@ -11,20 +11,23 @@ public class Team {
         this.offenseRanking = offenseRanking;
         this.teamName = teamName;
         wins = 0;
+        sbWins = 0;
     }
 
-    public Team(String teamName) {
-        this.teamName = teamName;
-        defenseRanking = (int)(Math.random()*32+1);
-        offenseRanking = (int)(Math.random()*32+1);
+    public Team(int lowerOffenseBound, int lowerDefenseBound) { //random Playoffs team
+        this.teamName = "";
+        defenseRanking = (int)(Math.random()*lowerOffenseBound+1);
+        offenseRanking = (int)(Math.random()*lowerDefenseBound+1);
         wins = 0;
+        sbWins = 0;
     }
 
     public Team(){
-        this.teamName = ""; // change to get something from an array of team names;
+        this.teamName = "";
         defenseRanking = (int)(Math.random()*32+1);
         offenseRanking = (int)(Math.random()*32+1);
         wins = 0;
+        sbWins = 0;
 
     }
 
@@ -58,5 +61,13 @@ public class Team {
 
     public void setWins(int wins) {
         this.wins = wins;
+    }
+
+    public int getSbWins() {
+        return sbWins;
+    }
+
+    public void setSbWins(int sbWins) {
+        this.sbWins = sbWins;
     }
 }
