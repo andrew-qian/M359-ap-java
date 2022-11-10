@@ -22,11 +22,11 @@ public class SimulateSeason {
         int yOffense = y.getOffenseRanking();
 
         while (xDefense == yDefense || xOffense == yOffense) {
-            y = new Team();
-            xDefense = x.getDefenseRanking();
-            xOffense = x.getOffenseRanking();
-            yDefense = y.getDefenseRanking();
-            yOffense = y.getOffenseRanking();
+            Team z = new Team();
+            yDefense = z.getDefenseRanking();
+            yOffense = z.getOffenseRanking();
+            y.setDefenseRanking(yDefense);
+            y.setOffenseRanking(yOffense);
         }
 
         if (xDefense < yDefense && xOffense < yOffense) {
@@ -80,13 +80,13 @@ public class SimulateSeason {
         if (x.getWins() >= 11){
             result += "Made Playoffs!\n";
             Team y = new Team(16,16);
-            int iterations = 0;
+            int iterations = 1;
             boolean playoffGameResult = simulateGame(x,y);
-            while (iterations <= 3 && playoffGameResult){
+            while (iterations <= 4 && playoffGameResult){
                 playoffGameResult = simulateGame(x,y);
                 iterations++;
             }
-            if (iterations == 3){
+            if (iterations == 4){
                 x.setSbWins(x.getSbWins() + 1);
                 SBWins++;
                 wonSB = true;
