@@ -3,7 +3,9 @@ package Unit5.PartnerLab;
 public class SimulateSeason {
     private static int totalWins = 0;
     private static int years = 0;
-
+    private static int SBWins = 0;
+    private static boolean perfectSeason = false;
+    private static int perfectSeasonYear = 0;
     /**
      * Helper method for simulateSeason, simulates a single game between the Team object initiated and a randomly generated team
      * @param x Team object that is already initiated
@@ -70,28 +72,33 @@ public class SimulateSeason {
             }
 
         }
+        double winLossPercentage = Math.round((double)(x.getWins())/(17)*100 * 100.0) / 100.0;;
+        result += "\nRecord: " + x.getWins() + "-" + (17 - x.getWins()) + " (" + winLossPercentage + "%)\n";
 
         //playoffs
-        boolean SBWin = false;
-        if (x.getWins() > 11){
+        boolean wonSB = false;
+        if (x.getWins() >= 11){
+            result += "Made Playoffs!\n";
             Team y = new Team(16,16);
-            int iterations = 1;
+            int iterations = 0;
             boolean playoffGameResult = simulateGame(x,y);
-            while (iterations <= 4 && playoffGameResult){
+            while (iterations <= 3 && playoffGameResult){
                 playoffGameResult = simulateGame(x,y);
                 iterations++;
             }
-            if (iterations == 4){
+            if (iterations == 3){
                 x.setSbWins(x.getSbWins() + 1);
-                SBWin = true;
-
+                SBWins++;
+                wonSB = true;
             }
         }
 
-        double winLossPercentage = Math.round((double)(x.getWins())/(17)*100 * 100.0) / 100.0;;
-        result += "\nRecord: " + x.getWins() + "-" + (17 - x.getWins()) + " (" + winLossPercentage + "%)\n";
-        if (SBWin){
-            result += "Won Super Bowl!";
+        if (wonSB){
+            result += "Won Super Bowl!\n";
+        }
+        if (x.getWins() == 17 && wonSB){
+            perfectSeason = true;
+            perfectSeasonYear = years;
         }
         return result;
         }
@@ -102,7 +109,12 @@ public class SimulateSeason {
      */
     public static String franchiseLog(){
         double winLossPercentage = Math.round((double)(totalWins)/((years*17)) * 100 * 100.0) / 100.0;
-        return "Years Played: " + years + "\nTotal Record: " + totalWins + "-" + ((years*17)-totalWins) + " (" + winLossPercentage + "%)";
+        String output = "Years Played: " + years + "\nTotal Record: " + totalWins + "-" + ((years*17)-totalWins) + " (" + winLossPercentage + "%)"
+                + "\nSuper Bowl Wins: " + SBWins;
+        if (perfectSeason){
+            output += "\nYOU HAD A PERFECT SEASON YEAR: " + perfectSeasonYear;
+        }
+        return output;
     }
 
 }
