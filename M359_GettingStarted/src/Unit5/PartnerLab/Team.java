@@ -26,6 +26,7 @@ public class Team {
 
 
     public Team(String teamName, int offenseRanking, int defenseRanking, String playerName, int playerStrength) {
+
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
         this.teamName = teamName;
@@ -35,18 +36,42 @@ public class Team {
         sbWins = 0;
     }
     public Team(int offenseRanking, int defenseRanking) {
+        int randInt = (int)(Math.random()*32);
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
-        this.teamName = teamNameArray[(int)(Math.random()*32)];
+        this.teamName = teamNameArray[randInt];
+        /*
+        String[] arr_new = new String[teamNameArray.length-1];
+        for(int i=0, k=0;i<teamNameArray.length;i++){
+            if(i!=randInt){
+                arr_new[k] = (teamNameArray[i]);
+                k++;
+            }
+        }
+        this.teamNameArray = arr_new;
+        */
+
+
         wins = 0;
         losses = 0;
         sbWins = 0;
     }
 
-    public Team(){
-        this.teamName = teamNameArray[(int)(Math.random()*32)];
+    public Team(){ // i'm slowly going insane i need to make it so that the array removes the team name
+        int randInt = (int)(Math.random()*32);
         defenseRanking = (int)(Math.random()*32+1);
         offenseRanking = (int)(Math.random()*32+1);
+        this.teamName = teamNameArray[randInt];
+        /*String[] arr_new = new String[teamNameArray.length-1];
+        for(int i=0, k=0;i<teamNameArray.length;i++){
+            if(i!=randInt){
+                arr_new[k] = (teamNameArray[i]);
+                k++;
+            }
+        }
+        this.teamNameArray = arr_new.clone();
+        */
+
         losses = 0;
         wins = 0;
         sbWins = 0;

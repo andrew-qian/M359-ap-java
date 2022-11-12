@@ -3,7 +3,7 @@ package Unit5.PartnerLab;
 public class SimulateSeason {
     private static int totalWins = 0;
     private static int totalLosses = 0;
-    private static int years = 0;
+    private static int yearNum = 2021;
     private static int SBWins = 0;
     private static boolean perfectSeason = false;
     private static int perfectSeasonYear = 0;
@@ -136,18 +136,25 @@ public class SimulateSeason {
     }
     public static String simulateSeason(Team x) {
         String result = "";
-        if (years == 0){
+        String[] prevTeamNames = new String[18];
+        if (yearNum == 2021){
             result += "Team: " + x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")\nStar Player: " + x.getTeamStarPlayer().getPlayerName()
                     + "\nPlayer Strength: " + x.getTeamStarPlayer().getPlayerStrength() + "\n\n";
         }
         x.setWins(0);
         x.setLosses(0);
-        years++;
-        result += "Year: " + years + "\n";
+        yearNum++;
+        result += "Year: " + yearNum + "\n";
 
         for (int i = 1; i < 18; i++) {
             int homeOrAway = (int)(Math.random()*2);
             Team y = new Team();
+            for (int j = 0; j < prevTeamNames.length-1; j++){
+                if (y.getTeamName().equals(prevTeamNames[j])){
+                    y = new Team();
+                }
+            }
+            prevTeamNames[i] = y.getTeamName();
             simulateWeeks(y,i-1);
             String gameResult = simulateGame(x, y);
             String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
@@ -206,47 +213,19 @@ public class SimulateSeason {
         }
         if (x.getWins() == 17 && wonSB){
             perfectSeason = true;
-            perfectSeasonYear = years;
+            perfectSeasonYear = yearNum;
         }
         return result;
     }
 
-    public static String simulatePlayoffs(Team x){
-        String result = "";
-        boolean wonSB = false;
-        if (x.getWins() >= 11){
-            result += "Made Playoffs!\n";
-            Team y = new Team((int)(Math.random()*16+1),(int)(Math.random()*16+1));
-            int iterations = 1;
-            String playoffGameResult = simulateGame(x,y);
-            while (iterations <= 4 && playoffGameResult.charAt(0) == 'W'){
-                playoffGameResult = simulateGame(x,y);
-                iterations++;
-            }
-            if (iterations == 4){
-                x.setSbWins(x.getSbWins() + 1);
-                SBWins++;
-                wonSB = true;
-            }
-        }
-
-        if (wonSB){
-            result += "Won Super Bowl!\n";
-        }
-        if (x.getWins() == 17 && wonSB){
-            perfectSeason = true;
-            perfectSeasonYear = years;
-        }
-        return result;
-    }
 
     /**
      * Checks the total wins/losses and win percentage through all years
       * @return Returns win loss percentage and total wins/losses
      */
     public static String franchiseLog(){
-        double winLossPercentage = Math.round((double)(totalWins)/((years*17)) * 100 * 100.0) / 100.0;
-        String output = "Years Played: " + years + "\nTotal Record: " + totalWins + "-" + totalLosses + " (" + winLossPercentage + "%)"
+        double winLossPercentage = Math.round((double)(totalWins)/(((yearNum -2021)*17)) * 100 * 100.0) / 100.0;
+        String output = "Years Played: " + (yearNum - 2021) + "\nTotal Record: " + totalWins + "-" + totalLosses + " (" + winLossPercentage + "%)"
                 + "\nSuper Bowl Wins: " + SBWins;
         if (perfectSeason){
             output += "\nYOU HAD A PERFECT SEASON YEAR: " + perfectSeasonYear;
