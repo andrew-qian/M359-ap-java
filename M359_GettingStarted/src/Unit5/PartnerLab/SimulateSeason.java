@@ -15,7 +15,6 @@ public class SimulateSeason {
      */
     public static String simulateGame(Team x, Team y) {
         String output = "";
-        String score = "";
         double winChance;
 
         int randInt = (int)(Math.random() * 100 + 1);
@@ -122,8 +121,6 @@ public class SimulateSeason {
     /**
      * Runs simulateGame 17 times and then sums up the wins/losses and win percentage
      * @param x Team object that is already initiated
-     * @return Returns a printout that shows the ranking of the team played every game, whether it was a win or loss,
-     * and a total win/loss record of the season and win percentage.
      */
     public static void simulateWeeks(Team x, int weeks) { // for random teams only
         for (int i = 0; i < weeks; i++) {
@@ -147,7 +144,6 @@ public class SimulateSeason {
         x.setLosses(0);
         years++;
         result += "Year: " + years + "\n";
-        int randInt = (int)(Math.random() * 100 + 1);
 
         for (int i = 1; i < 18; i++) {
             int homeOrAway = (int)(Math.random()*2);
