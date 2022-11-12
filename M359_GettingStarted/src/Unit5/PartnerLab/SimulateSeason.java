@@ -233,8 +233,8 @@ public class SimulateSeason {
         return output;
     }
     public static void main(String[] args) {
-        Team bears = new Team("Bears", 11, 12, "Justin Fields", 100);
-        for (int i = 0; i < 5; i++){
+        Team bears = new Team("Bears", 1, 1, "Justin Fields", 100);
+        for (int i = 0; i < 20; i++){
             System.out.println(simulateSeason(bears));
         }
         System.out.println(franchiseLog());
