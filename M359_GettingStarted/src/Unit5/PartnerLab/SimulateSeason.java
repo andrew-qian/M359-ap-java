@@ -12,8 +12,11 @@ public class SimulateSeason {
      * @param y randomly generated team that team x plays in a game
      * @return Returns true or false based on whether team x beats team y
      */
-    public static boolean simulateGame(Team x, Team y) {
+    public static String simulateGame(Team x, Team y) {
+        String output = "";
+        String score = "";
         double winChance;
+
         int randInt = (int)(Math.random() * 100 + 1);
 
         int xDefense = x.getDefenseRanking();
@@ -29,21 +32,90 @@ public class SimulateSeason {
             y.setOffenseRanking(yOffense);
         }
 
-        if (xDefense < yDefense && xOffense < yOffense) {
-            winChance = 80;
-        } else if (xDefense < yDefense && xOffense > yOffense) {
-            winChance = 40;
-        } else if (xDefense > yDefense && xOffense < yOffense) {
-            winChance = 40;
-        } else {
-            winChance = 20;
+        while (y.getTeamName().equals(x.getTeamName())){
+            Team z = new Team(yOffense, yDefense);
+            y.setTeamName(z.getTeamName());
         }
 
-        if (winChance > randInt) {
-            return true;
-        } else {
-            return false;
+        if (xDefense < yDefense && xOffense < yOffense) {
+            winChance = 80;
+        } else if ((xDefense < yDefense && xOffense > yOffense) || (xDefense > yDefense && xOffense < yOffense)){
+            winChance = 40;
+        }  else {
+            winChance = 20;
         }
+        winChance *= (1+(double)10/(101-x.getPlayerStrength()));
+        if (winChance > randInt) {
+            output += "W";
+        } else {
+            output += "L";
+        }
+
+        output += calculateScore(output, x, y);
+        return output;
+    }
+
+
+    public static String calculateScore(String winOrLoss, Team x, Team y){
+        int randScoreX;
+        int randScoreY;
+
+        int xDefense = x.getDefenseRanking();
+        int xOffense = x.getOffenseRanking();
+        int yDefense = y.getDefenseRanking();
+        int yOffense = y.getOffenseRanking();
+
+        boolean withinFive = (Math.abs(xOffense - yOffense) <= 5) && (Math.abs(xDefense - yDefense) <= 5);
+        boolean withinTwo = (Math.abs(xOffense - yOffense) <= 2) && ((Math.abs(xDefense - yDefense) <= 2));
+        if (winOrLoss.equals("W")){
+            if (withinTwo){
+                randScoreX = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
+                randScoreY = randScoreX - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                while (randScoreY < 0 || randScoreY == 4|| randScoreY == 1){
+                    randScoreY = randScoreX - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                }
+            }
+            else if (withinFive){
+                randScoreX = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
+                randScoreY = randScoreX - 7*(int)(Math.random() * 3 + 1) - 3*(int)(Math.random() * 2 + 1);
+                while (randScoreY < 0 || randScoreY == 4|| randScoreY == 1){
+                    randScoreY = randScoreX - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                }
+            }
+            else{
+                randScoreX = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
+                randScoreY = randScoreX - 7*(int)(Math.random() * 6 + 1) - 3*(int)(Math.random() * 3 + 1);
+                while (randScoreY < 0 || randScoreY == 4 || randScoreY == 1){
+                    randScoreY = randScoreX - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                }
+            }
+        }
+        else{
+            if (withinTwo){
+                randScoreY = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
+                randScoreX = randScoreY - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                while (randScoreX < 0 || randScoreX == 4 || randScoreX == 1){
+                    randScoreX = randScoreY - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                }
+            }
+            else if (withinFive){
+                randScoreY = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
+                randScoreX = randScoreY - 7*(int)(Math.random() * 3 + 1) - 3*(int)(Math.random() * 2 + 1);
+                while (randScoreX < 0 || randScoreX == 4 || randScoreX == 1){
+                    randScoreX = randScoreY - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                }
+            }
+            else{
+                randScoreY = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
+                randScoreX = randScoreY - 7*(int)(Math.random() * 6 + 1) - 3*(int)(Math.random() * 3 + 1);
+                while (randScoreX < 0 || randScoreX == 4 || randScoreX == 1){
+                    randScoreX = randScoreY - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                }
+            }
+        }
+
+        return randScoreX + "-" + randScoreY;
+
     }
 
     /**
@@ -52,37 +124,76 @@ public class SimulateSeason {
      * @return Returns a printout that shows the ranking of the team played every game, whether it was a win or loss,
      * and a total win/loss record of the season and win percentage.
      */
+    public static void simulateWeeks(Team x, int weeks) { // for random teams only
+        for (int i = 0; i < weeks; i++) {
+            Team y = new Team();
+            String gameResult = simulateGame(x, y);
+            if (gameResult.charAt(0) == 'W') {
+                x.setWins(x.getWins() + 1);
+            }
+            else{
+                x.setLosses(x.getLosses() + 1);
+            }
+        }
+    }
     public static String simulateSeason(Team x) {
-        String result = "Team: " + x.getTeamName() + " (Offense #" + x.getOffenseRanking() + ", Defense #" + x.getDefenseRanking() + ")\n";
+        String result = "";
+        if (years == 0){
+            result += "Team: " + x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")\nStar Player: " + x.getTeamStarPlayer().getPlayerName()
+                    + "\nPlayer Strength: " + x.getTeamStarPlayer().getPlayerStrength() + "\n\n";
+        }
         x.setWins(0);
+        x.setLosses(0);
         years++;
         result += "Year: " + years + "\n";
         int randInt = (int)(Math.random() * 100 + 1);
 
         for (int i = 1; i < 18; i++) {
+            int homeOrAway = (int)(Math.random()*2);
             Team y = new Team();
-            boolean gameResult = simulateGame(x, y);
-            if (gameResult) {
-                result += "Week " + i + ": " + "(W) (Offence #" + y.getOffenseRanking() + ", Defense #" +y.getDefenseRanking() + ")\n";
+            simulateWeeks(y,i-1);
+            String gameResult = simulateGame(x, y);
+            String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
+
+            if (gameResult.charAt(0) == 'W') {
+                y.setLosses(y.getLosses() + 1);
                 totalWins++;
                 x.setWins(x.getWins() + 1);
+                String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
+                String xPrintout = x.getTeamName() + " (" + x.getWins() + "-" + x.getLosses() + ")";
+                if (homeOrAway == 0){
+                    result += defaultPrintout + xPrintout + " @ " +yPrintout + "\n";
+                }
+                else{
+                    result += defaultPrintout + yPrintout + " @ " +xPrintout + "\n";
+                }
             }
             else {
-                result += "Week " + i + ": " + "(L) (Offence #" + y.getOffenseRanking() + ", Defense #" +y.getDefenseRanking() + ")\n";
+                y.setWins(y.getWins() + 1);
+                totalLosses++;
+                x.setLosses(x.getLosses() + 1);
+                String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
+                String xPrintout = x.getTeamName() + " (" + x.getWins() + "-" + x.getLosses() + ")";
+                if (homeOrAway == 0){
+                    result += defaultPrintout + xPrintout + " @ " +yPrintout + "\n";
+                }
+                else{
+                    result += defaultPrintout + yPrintout + " @ " +xPrintout + "\n";
+                }
             }
 
         }
         double winLossPercentage = Math.round((double)(x.getWins())/(17)*100 * 100.0) / 100.0;;
-        result += "\nRecord: " + x.getWins() + "-" + (17 - x.getWins()) + " (" + winLossPercentage + "%)\n";
+        result += "\nRecord: " + x.getWins() + "-" + x.getLosses() + " (" + winLossPercentage + "%)\n";
 
         //playoffs
         boolean wonSB = false;
         if (x.getWins() >= 11){
             result += "Made Playoffs!\n";
-            Team y = new Team(16,16);
+            Team y = new Team((int)(Math.random()*16+1),(int)(Math.random()*16+1));
             int iterations = 1;
-            boolean playoffGameResult = simulateGame(x,y);
-            while (iterations <= 4 && playoffGameResult){
+            String playoffGameResult = simulateGame(x,y);
+            while (iterations <= 4 && playoffGameResult.charAt(0) == 'W'){
                 playoffGameResult = simulateGame(x,y);
                 iterations++;
             }
@@ -101,7 +212,36 @@ public class SimulateSeason {
             perfectSeasonYear = years;
         }
         return result;
+    }
+
+    public static String simulatePlayoffs(Team x){
+        String result = "";
+        boolean wonSB = false;
+        if (x.getWins() >= 11){
+            result += "Made Playoffs!\n";
+            Team y = new Team((int)(Math.random()*16+1),(int)(Math.random()*16+1));
+            int iterations = 1;
+            String playoffGameResult = simulateGame(x,y);
+            while (iterations <= 4 && playoffGameResult.charAt(0) == 'W'){
+                playoffGameResult = simulateGame(x,y);
+                iterations++;
+            }
+            if (iterations == 4){
+                x.setSbWins(x.getSbWins() + 1);
+                SBWins++;
+                wonSB = true;
+            }
         }
+
+        if (wonSB){
+            result += "Won Super Bowl!\n";
+        }
+        if (x.getWins() == 17 && wonSB){
+            perfectSeason = true;
+            perfectSeasonYear = years;
+        }
+        return result;
+    }
 
     /**
      * Checks the total wins/losses and win percentage through all years
@@ -109,12 +249,19 @@ public class SimulateSeason {
      */
     public static String franchiseLog(){
         double winLossPercentage = Math.round((double)(totalWins)/((years*17)) * 100 * 100.0) / 100.0;
-        String output = "Years Played: " + years + "\nTotal Record: " + totalWins + "-" + ((years*17)-totalWins) + " (" + winLossPercentage + "%)"
+        String output = "Years Played: " + years + "\nTotal Record: " + totalWins + "-" + totalLosses + " (" + winLossPercentage + "%)"
                 + "\nSuper Bowl Wins: " + SBWins;
         if (perfectSeason){
             output += "\nYOU HAD A PERFECT SEASON YEAR: " + perfectSeasonYear;
         }
         return output;
+    }
+    public static void main(String[] args) {
+        Team bears = new Team("Bears", 11, 12, "Justin Fields", 100);
+        for (int i = 0; i < 5; i++){
+            System.out.println(simulateSeason(bears));
+        }
+        System.out.println(franchiseLog());
     }
 
 

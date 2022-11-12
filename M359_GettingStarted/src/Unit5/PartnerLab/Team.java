@@ -1,31 +1,53 @@
 package Unit5.PartnerLab;
 
 public class Team {
-    private int defenseRanking, offenseRanking, wins, sbWins;
+    private int defenseRanking, offenseRanking, wins, sbWins, losses;
+    private StarPlayer teamStarPlayer;
+    private String playerName;
+    private int playerStrength;
     private String teamName;
 
+    String[] teamNameArray = {"49ers", "Bears", "Bengals", "Bills", "Broncos", "Browns", "Buccaneers", "Cardinals", "Chargers",
+            "Chiefs", "Colts", "Commanders", "Cowboys", "Dolphins", "Eagles", "Falcons", "Giants", "Jaguars", "Jets", "Lions",
+            "Packers", "Panthers", "Patriots", "Raiders", "Rams", "Ravens", "Saints", "Seahawks", "Steelers", "Texans", "Titans", "Vikings"};
+
+    String[] NFCEast = {"Cowboys", "Giants", "Eagles", "Commanders"};
+    String[] NFCSouth = {"Falcons", "Panthers", "Saints", "Buccaneers"};
+    String[] NFCNorth = {"Bears", "Lions", "Packers", "Vikings"};
+    String[] NFCWest = {"Cardinals", "Rams", "49ers", "Seahawks"};
+
+    String[] AFCEast = {"Bills", "Dolphins", "Patriots", "Jets"};
+    String[] AFCSouth = {"Texans", "Colts", "Jaguars", "Titans"};
+    String[] AFCNorth = {"Ravens", "Bengals", "Browns", "Steelers"};
+    String[] AFCWest = {"Broncos", "Chiefs", "Raiders", "Chargers"};
 
 
-    public Team(int offenseRanking, int defenseRanking, String teamName) {
+
+
+
+    public Team(String teamName, int offenseRanking, int defenseRanking, String playerName, int playerStrength) {
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
         this.teamName = teamName;
+        this.teamStarPlayer = new StarPlayer(playerName, playerStrength);
         wins = 0;
+        losses = 0;
         sbWins = 0;
     }
-
-    public Team(int lowerOffenseBound, int lowerDefenseBound) { //random Playoffs team
-        this.teamName = "";
-        defenseRanking = (int)(Math.random()*lowerOffenseBound+1);
-        offenseRanking = (int)(Math.random()*lowerDefenseBound+1);
+    public Team(int offenseRanking, int defenseRanking) {
+        this.defenseRanking = defenseRanking;
+        this.offenseRanking = offenseRanking;
+        this.teamName = teamNameArray[(int)(Math.random()*32)];
         wins = 0;
+        losses = 0;
         sbWins = 0;
     }
 
     public Team(){
-        this.teamName = "";
+        this.teamName = teamNameArray[(int)(Math.random()*32)];
         defenseRanking = (int)(Math.random()*32+1);
         offenseRanking = (int)(Math.random()*32+1);
+        losses = 0;
         wins = 0;
         sbWins = 0;
 
@@ -69,5 +91,37 @@ public class Team {
 
     public void setSbWins(int sbWins) {
         this.sbWins = sbWins;
+    }
+
+    public StarPlayer getTeamStarPlayer() {
+        return teamStarPlayer;
+    }
+
+    public void setTeamStarPlayer(StarPlayer teamStarPlayer) {
+        this.teamStarPlayer = teamStarPlayer;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public int getPlayerStrength() {
+        return playerStrength;
+    }
+
+    public void setPlayerStrength(int playerStrength) {
+        this.playerStrength = playerStrength;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
     }
 }
