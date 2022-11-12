@@ -2,6 +2,7 @@ package Unit5.PartnerLab;
 
 public class SimulateSeason {
     private static int totalWins = 0;
+    private static int totalLosses = 0;
     private static int years = 0;
     private static int SBWins = 0;
     private static boolean perfectSeason = false;
