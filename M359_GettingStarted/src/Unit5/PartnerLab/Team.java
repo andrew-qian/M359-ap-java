@@ -40,37 +40,16 @@ public class Team {
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
         this.teamName = teamNameArray[randInt];
-        /*
-        String[] arr_new = new String[teamNameArray.length-1];
-        for(int i=0, k=0;i<teamNameArray.length;i++){
-            if(i!=randInt){
-                arr_new[k] = (teamNameArray[i]);
-                k++;
-            }
-        }
-        this.teamNameArray = arr_new;
-        */
-
-
         wins = 0;
         losses = 0;
         sbWins = 0;
     }
 
-    public Team(){ // i'm slowly going insane i need to make it so that the array removes the team name
+    public Team(){
         int randInt = (int)(Math.random()*32);
         defenseRanking = (int)(Math.random()*32+1);
         offenseRanking = (int)(Math.random()*32+1);
         this.teamName = teamNameArray[randInt];
-        /*String[] arr_new = new String[teamNameArray.length-1];
-        for(int i=0, k=0;i<teamNameArray.length;i++){
-            if(i!=randInt){
-                arr_new[k] = (teamNameArray[i]);
-                k++;
-            }
-        }
-        this.teamNameArray = arr_new.clone();
-        */
 
         losses = 0;
         wins = 0;
@@ -126,21 +105,6 @@ public class Team {
         this.teamStarPlayer = teamStarPlayer;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public int getPlayerStrength() {
-        return playerStrength;
-    }
-
-    public void setPlayerStrength(int playerStrength) {
-        this.playerStrength = playerStrength;
-    }
 
     public int getLosses() {
         return losses;

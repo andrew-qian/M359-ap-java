@@ -44,7 +44,8 @@ public class SimulateSeason {
         }  else {
             winChance = 20;
         }
-        winChance *= (1+(double)10/(101-x.getPlayerStrength()));
+        winChance *= (1+.25/(101-(StarPlayer.getPlayerStrength())));
+
         if (winChance > randInt) {
             output += "W";
         } else {
@@ -139,7 +140,7 @@ public class SimulateSeason {
         String[] prevTeamNames = new String[18];
         if (yearNum == 2021){
             result += "Team: " + x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")\nStar Player: " + x.getTeamStarPlayer().getPlayerName()
-                    + "\nPlayer Strength: " + x.getTeamStarPlayer().getPlayerStrength() + "\n\n";
+                    + "\nPlayer Strength: " + StarPlayer.getPlayerStrength() + "\n\n";
         }
         x.setWins(0);
         x.setLosses(0);
@@ -197,7 +198,7 @@ public class SimulateSeason {
             Team y = new Team((int)(Math.random()*16+1),(int)(Math.random()*16+1));
             int iterations = 1;
             String playoffGameResult = simulateGame(x,y);
-            while (iterations <= 4 && playoffGameResult.charAt(0) == 'W'){
+            while (iterations < 4 && playoffGameResult.charAt(0) == 'W'){
                 playoffGameResult = simulateGame(x,y);
                 iterations++;
             }
@@ -233,8 +234,8 @@ public class SimulateSeason {
         return output;
     }
     public static void main(String[] args) {
-        Team bears = new Team("Bears", 1, 1, "Justin Fields", 100);
-        for (int i = 0; i < 20; i++){
+        Team bears = new Team("Bears", 11, 12, "Justin Fields", 50);
+        for (int i = 0; i < 200; i++){
             System.out.println(simulateSeason(bears));
         }
         System.out.println(franchiseLog());

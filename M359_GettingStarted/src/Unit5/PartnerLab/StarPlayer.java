@@ -2,11 +2,11 @@ package Unit5.PartnerLab;
 
 public class StarPlayer {
     private String playerName;
-    private int playerStrength;
+    private static int playerStrength = 0;
 
     public StarPlayer(String playerName, int playerStrength) {
         this.playerName = playerName;
-        this.playerStrength = playerStrength;
+        StarPlayer.playerStrength = playerStrength;
     }
 
     public String toString(){
@@ -21,11 +21,11 @@ public class StarPlayer {
         this.playerName = playerName;
     }
 
-    public int getPlayerStrength() {
+    public static int getPlayerStrength() {
         return playerStrength;
     }
 
     public void setPlayerStrength(int playerStrength) {
-        this.playerStrength = playerStrength;
+        StarPlayer.playerStrength = playerStrength;
     }
 }
