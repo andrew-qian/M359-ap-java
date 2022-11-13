@@ -9,9 +9,6 @@ public class StarPlayer {
         StarPlayer.playerStrength = playerStrength;
     }
 
-    public String toString(){
-        return "The player is: " + playerName + " and is on: " + playerStrength;
-    }
 
     public String getPlayerName() {
         return playerName;
