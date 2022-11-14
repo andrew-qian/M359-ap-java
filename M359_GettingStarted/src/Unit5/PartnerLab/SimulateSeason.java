@@ -56,6 +56,9 @@ public class SimulateSeason {
         return output;
     }
 
+    public static int randomScore(int x, int y){
+        return 7*(int)(Math.random() * x + 1) + 3*(int)(Math.random() * y + 1);
+    }
 
     public static String calculateScore(String winOrLoss, Team x, Team y){
         int randScoreX;
@@ -69,48 +72,45 @@ public class SimulateSeason {
         boolean withinFive = (Math.abs(xOffense - yOffense) <= 5) && (Math.abs(xDefense - yDefense) <= 5);
         boolean withinTwo = (Math.abs(xOffense - yOffense) <= 2) && ((Math.abs(xDefense - yDefense) <= 2));
         if (winOrLoss.equals("W")){
+            randScoreX = randomScore(6,3);
             if (withinTwo){
-                randScoreX = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
-                randScoreY = randScoreX - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+
+                randScoreY = randScoreX - randomScore(2,1);
                 while (randScoreY < 0 || randScoreY == 4|| randScoreY == 1){
-                    randScoreY = randScoreX - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                    randScoreY = randScoreX - randomScore(2,1);;
                 }
             }
             else if (withinFive){
-                randScoreX = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
-                randScoreY = randScoreX - 7*(int)(Math.random() * 3 + 1) - 3*(int)(Math.random() * 2 + 1);
+                randScoreY = randScoreX - randomScore(3,2);
                 while (randScoreY < 0 || randScoreY == 4|| randScoreY == 1){
-                    randScoreY = randScoreX - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                    randScoreY = randScoreX - randomScore(3,2);
                 }
             }
             else{
-                randScoreX = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
-                randScoreY = randScoreX - 7*(int)(Math.random() * 6 + 1) - 3*(int)(Math.random() * 3 + 1);
+                randScoreY = randScoreX - randomScore(6,3);
                 while (randScoreY < 0 || randScoreY == 4 || randScoreY == 1){
-                    randScoreY = randScoreX - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                    randScoreY = randScoreX - randomScore(6,3);
                 }
             }
         }
         else{
+            randScoreY = randomScore(6,3);
             if (withinTwo){
-                randScoreY = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
-                randScoreX = randScoreY - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                randScoreX = randScoreY - randomScore(2,1);
                 while (randScoreX < 0 || randScoreX == 4 || randScoreX == 1){
-                    randScoreX = randScoreY - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                    randScoreX = randScoreY - randomScore(2,1);
                 }
             }
             else if (withinFive){
-                randScoreY = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
-                randScoreX = randScoreY - 7*(int)(Math.random() * 3 + 1) - 3*(int)(Math.random() * 2 + 1);
+                randScoreX = randScoreY - randomScore(3,2);
                 while (randScoreX < 0 || randScoreX == 4 || randScoreX == 1){
-                    randScoreX = randScoreY - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                    randScoreX = randScoreY - randomScore(3,2);
                 }
             }
             else{
-                randScoreY = 7*(int)(Math.random() * 6 + 1) + 3*(int)(Math.random() * 3 + 1);
-                randScoreX = randScoreY - 7*(int)(Math.random() * 6 + 1) - 3*(int)(Math.random() * 3 + 1);
+                randScoreX = randScoreY - randomScore(6,3);
                 while (randScoreX < 0 || randScoreX == 4 || randScoreX == 1){
-                    randScoreX = randScoreY - 7*(int)(Math.random() * 2+ 1) - 3*(int)(Math.random() + 1);
+                    randScoreX = randScoreY - randomScore(6,3);
                 }
             }
         }
@@ -228,14 +228,15 @@ public class SimulateSeason {
         double winLossPercentage = Math.round((double)(totalWins)/(((yearNum -2021)*17)) * 100 * 100.0) / 100.0;
         String output = "Years Played: " + (yearNum - 2021) + "\nTotal Record: " + totalWins + "-" + totalLosses + " (" + winLossPercentage + "%)"
                 + "\nSuper Bowl Wins: " + SBWins;
-        if (perfectSeason){
+        /*if (perfectSeason){
             output += "\nYOU HAD A PERFECT SEASON YEAR: " + perfectSeasonYear;
         }
+         */
         return output;
     }
     public static void main(String[] args) {
         Team bears = new Team("Bears", 1, 1, "Justin Fields", 100);
-        for (int i = 0; i < 200; i++){
+        for (int i = 0; i < 1; i++){
             System.out.println(simulateSeason(bears));
         }
         System.out.println(franchiseLog());
