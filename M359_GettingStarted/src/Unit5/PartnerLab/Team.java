@@ -3,30 +3,14 @@ package Unit5.PartnerLab;
 public class Team {
     private int defenseRanking, offenseRanking, wins, sbWins, losses;
     private StarPlayer teamStarPlayer;
-    private String playerName;
-    private int playerStrength;
     private String teamName;
+
 
     String[] teamNameArray = {"49ers", "Bears", "Bengals", "Bills", "Broncos", "Browns", "Buccaneers", "Cardinals", "Chargers",
             "Chiefs", "Colts", "Commanders", "Cowboys", "Dolphins", "Eagles", "Falcons", "Giants", "Jaguars", "Jets", "Lions",
             "Packers", "Panthers", "Patriots", "Raiders", "Rams", "Ravens", "Saints", "Seahawks", "Steelers", "Texans", "Titans", "Vikings"};
 
-    String[] NFCEast = {"Cowboys", "Giants", "Eagles", "Commanders"};
-    String[] NFCSouth = {"Falcons", "Panthers", "Saints", "Buccaneers"};
-    String[] NFCNorth = {"Bears", "Lions", "Packers", "Vikings"};
-    String[] NFCWest = {"Cardinals", "Rams", "49ers", "Seahawks"};
-
-    String[] AFCEast = {"Bills", "Dolphins", "Patriots", "Jets"};
-    String[] AFCSouth = {"Texans", "Colts", "Jaguars", "Titans"};
-    String[] AFCNorth = {"Ravens", "Bengals", "Browns", "Steelers"};
-    String[] AFCWest = {"Broncos", "Chiefs", "Raiders", "Chargers"};
-
-
-
-
-
     public Team(String teamName, int offenseRanking, int defenseRanking, String playerName, int playerStrength) {
-
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
         this.teamName = teamName;
@@ -35,6 +19,7 @@ public class Team {
         losses = 0;
         sbWins = 0;
     }
+
     public Team(int offenseRanking, int defenseRanking) {
         int randInt = (int)(Math.random()*32);
         this.defenseRanking = defenseRanking;

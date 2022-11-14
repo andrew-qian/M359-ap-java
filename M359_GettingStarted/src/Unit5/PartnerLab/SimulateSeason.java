@@ -135,13 +135,15 @@ public class SimulateSeason {
             }
         }
     }
-    public static String simulateSeason(Team x) {
+
+    public static String simulateSeason(Team x, Team x_2) { // add another usage of a Team object
         String result = "";
         String[] prevTeamNames = new String[18];
         if (yearNum == 2021){
             result += "Team: " + x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")\nStar Player: " + x.getTeamStarPlayer().getPlayerName()
                     + "\nPlayer Strength: " + StarPlayer.getPlayerStrength() + "\n\n";
         }
+
         x.setWins(0);
         x.setLosses(0);
         yearNum++;
@@ -150,13 +152,17 @@ public class SimulateSeason {
         for (int i = 1; i < 18; i++) {
             int homeOrAway = (int)(Math.random()*2);
             Team y = new Team();
-            for (int j = 0; j < prevTeamNames.length-1; j++){
+
+            for (int j = 0; j < prevTeamNames.length-1; j++){ // doesn't work to cancel out duplicates
                 if (y.getTeamName().equals(prevTeamNames[j])){
                     y = new Team();
+                    j = 0;
                 }
             }
             prevTeamNames[i] = y.getTeamName();
+
             simulateWeeks(y,i-1);
+
             String gameResult = simulateGame(x, y);
             String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
 
@@ -188,6 +194,8 @@ public class SimulateSeason {
             }
 
         }
+
+
         double winLossPercentage = Math.round((double)(x.getWins())/(17)*100 * 100.0) / 100.0;;
         result += "\nRecord: " + x.getWins() + "-" + x.getLosses() + " (" + winLossPercentage + "%)\n";
 
@@ -235,9 +243,10 @@ public class SimulateSeason {
         return output;
     }
     public static void main(String[] args) {
-        Team bears = new Team("Bears", 1, 1, "Justin Fields", 100);
-        for (int i = 0; i < 1; i++){
-            System.out.println(simulateSeason(bears));
+        Team bears = new Team("Bears", 12, 11, "Justin Fields", 85);
+        Team seahawks = new Team("Seahawks", 2, 2, "Geno Smith", 90);
+        for (int i = 0; i < 20; i++){
+            System.out.println(simulateSeason(bears, seahawks));
         }
         System.out.println(franchiseLog());
     }
