@@ -1,8 +1,12 @@
 package Unit5.PartnerLab;
 
 public class SimulateSeason {
-    private static int totalWins = 0;
-    private static int totalLosses = 0;
+    private static int totalWinsTeamOne = 0;
+    private static int totalLossesTeamOne = 0;
+
+    private static int totalWinsTeamTwo = 0;
+    private static int totalLossesTeamTwo = 0;
+
     private static int yearNum = 2021;
     private static int SBWins = 0;
     private static boolean perfectSeason = false;
@@ -141,8 +145,9 @@ public class SimulateSeason {
 
     public static String simulateSeason(Team x, Team x2) { // add another usage of a Team object
         String result = "";
-        String[] prevTeamNames = new String[19];
+        String[] prevTeamNames = new String[34];
         prevTeamNames[0] = x.getTeamName();
+        prevTeamNames[1] = x2.getTeamName();
 
         if (yearNum == 2021){
             result += "Team: " + x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")\nStar Player: " + x.getTeamStarPlayer().getPlayerName()
@@ -154,7 +159,7 @@ public class SimulateSeason {
         yearNum++;
         result += "Year: " + yearNum + "\n";
         String thanksgivingGameResult = simulateGame(x, x2);
-        String thanksgivingGameResultOpposite;
+        String thanksgivingGameResultOpposite = "";
         if (thanksgivingGameResult.charAt(0) == 'W'){
             thanksgivingGameResultOpposite = "L" + thanksgivingGameResult.substring(1);
             for (int i = 1; i < thanksgivingGameResultOpposite.length(); i++){
@@ -173,7 +178,7 @@ public class SimulateSeason {
 
         }
 
-        for (int i = 1; i < 18; i++) {
+        for (int i = 1; i < 17; i++) {
             if (i == 12) {
                 int homeOrAway = (int) (Math.random() * 2);
                 String gameResult = thanksgivingGameResult;
@@ -181,7 +186,7 @@ public class SimulateSeason {
 
                 if (gameResult.charAt(0) == 'W') {
                     x2.setLosses(x2.getLosses() + 1);
-                    totalWins++;
+                    totalWinsTeamOne++;
                     x.setRivalryWins(x.getRivalryWins()+1);
                     String yPrintout = x2.getTeamName() + " (" + x2.getWins() + "-" + x2.getLosses() + ")";
                     if (homeOrAway == 0) {
@@ -193,7 +198,7 @@ public class SimulateSeason {
                 } else {
                     x2.setWins(x2.getWins() + 1);
                     x2.setRivalryWins(x2.getRivalryWins()+1);
-                    totalLosses++;
+                    totalLossesTeamOne++;
                     String yPrintout = x2.getTeamName() + " (" + x2.getWins() + "-" + x2.getLosses() + ")";
                     if (homeOrAway == 0) {
                         result += defaultPrintout + "@ " + yPrintout + "\n";
@@ -214,7 +219,7 @@ public class SimulateSeason {
                         j = 0;
                     }
                 }
-                prevTeamNames[i] = y.getTeamName();
+                prevTeamNames[i+1] = y.getTeamName();
 
                 simulateWeeks(y, i - 1);
 
@@ -223,7 +228,7 @@ public class SimulateSeason {
 
                 if (gameResult.charAt(0) == 'W') {
                     y.setLosses(y.getLosses() + 1);
-                    totalWins++;
+                    totalWinsTeamOne++;
                     x.setWins(x.getWins() + 1);
                     String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
                     if (homeOrAway == 0) {
@@ -233,7 +238,7 @@ public class SimulateSeason {
                     }
                 } else {
                     y.setWins(y.getWins() + 1);
-                    totalLosses++;
+                    totalLossesTeamOne++;
                     x.setLosses(x.getLosses() + 1);
                     String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
                     if (homeOrAway == 0) {
@@ -246,7 +251,7 @@ public class SimulateSeason {
             }
         }
 
-        for (int i = 1; i < 18; i++) { // prints out both L or both W for both teams, fix
+        for (int i = 1; i < 17; i++) { // prints out both L or both W for both teams, fix
             if (i == 12) {
                 int homeOrAway = (int) (Math.random() * 2);
                 String gameResult = thanksgivingGameResultOpposite;
@@ -254,7 +259,7 @@ public class SimulateSeason {
 
                 if (gameResult.charAt(0) == 'W') {
                     x.setLosses(x.getLosses() + 1);
-                    totalWins++;
+                    totalWinsTeamTwo++;
                     x2.setWins(x2.getWins() + 1);
                     String yPrintout = x.getTeamName() + " (" + x.getWins() + "-" + x.getLosses() + ")";
                     if (homeOrAway == 0) {
@@ -264,7 +269,7 @@ public class SimulateSeason {
                     }
                 } else {
                     x.setWins(x.getWins() + 1);
-                    totalLosses++;
+                    totalLossesTeamTwo++;
                     x2.setLosses(x2.getLosses() + 1);
                     String yPrintout = x.getTeamName() + " (" + x.getWins() + "-" + x.getLosses() + ")";
                     if (homeOrAway == 0) {
@@ -285,7 +290,7 @@ public class SimulateSeason {
                         j = 0;
                     }
                 }
-                prevTeamNames[i] = y.getTeamName();
+                prevTeamNames[i+16] = y.getTeamName();
 
                 simulateWeeks(y, i - 1);
 
@@ -294,7 +299,7 @@ public class SimulateSeason {
 
                 if (gameResult.charAt(0) == 'W') {
                     y.setLosses(y.getLosses() + 1);
-                    totalWins++;
+                    totalWinsTeamTwo++;
                     x2.setWins(x2.getWins() + 1);
                     String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
                     if (homeOrAway == 0) {
@@ -304,7 +309,7 @@ public class SimulateSeason {
                     }
                 } else {
                     y.setWins(y.getWins() + 1);
-                    totalLosses++;
+                    totalLossesTeamTwo++;
                     x2.setLosses(x2.getLosses() + 1);
                     String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
                     if (homeOrAway == 0) {
