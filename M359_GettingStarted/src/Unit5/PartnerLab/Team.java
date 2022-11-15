@@ -1,7 +1,8 @@
 package Unit5.PartnerLab;
 
 public class Team {
-    private int defenseRanking, offenseRanking, wins, sbWins, losses, rivalryWins;
+    private int defenseRanking, offenseRanking, wins, sbWins, losses, rivalryWins, totalWins, totalLosses, perfectSeasonYear;
+    private boolean hasPerfectSeason;
     private StarPlayer teamStarPlayer;
     private String teamName;
 
@@ -21,6 +22,10 @@ public class Team {
         losses = 0;
         sbWins = 0;
         rivalryWins = 0;
+        totalWins = 0;
+        totalLosses = 0;
+        perfectSeasonYear = 0;
+        hasPerfectSeason = false;
 
     }
 
@@ -119,5 +124,37 @@ public class Team {
 
     public static String getRivalryRecord() {
         return rivalryRecord;
+    }
+
+    public int getTotalWins() {
+        return totalWins;
+    }
+
+    public void setTotalWins(int totalWins) {
+        this.totalWins = totalWins;
+    }
+
+    public int getTotalLosses() {
+        return totalLosses;
+    }
+
+    public void setTotalLosses(int totalLosses) {
+        this.totalLosses = totalLosses;
+    }
+
+    public int getPerfectSeasonYear() {
+        return perfectSeasonYear;
+    }
+
+    public void setPerfectSeasonYear(int perfectSeasonYear) {
+        this.perfectSeasonYear = perfectSeasonYear;
+    }
+
+    public boolean isHasPerfectSeason() {
+        return hasPerfectSeason;
+    }
+
+    public void setHasPerfectSeason(boolean hasPerfectSeason) {
+        this.hasPerfectSeason = hasPerfectSeason;
     }
 }

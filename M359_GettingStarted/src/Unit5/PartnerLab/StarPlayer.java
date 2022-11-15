@@ -2,7 +2,7 @@ package Unit5.PartnerLab;
 
 public class StarPlayer {
     private String playerName;
-    private int playerStrength = 0;
+    private int playerStrength;
 
     public StarPlayer(String playerName, int playerStrength) {
         this.playerName = playerName;
