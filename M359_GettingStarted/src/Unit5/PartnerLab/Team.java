@@ -118,7 +118,7 @@ public class Team {
     }
 
     public void setRivalryRecord(Team x, Team y){
-        rivalryRecord = x.getTeamName() + " vs " +  y.getTeamName() + " " +x.getRivalryWins() + "-" + y.getRivalryWins();
+        rivalryRecord = "Rivalry Record (" + x.getTeamName() + " vs " +  y.getTeamName() + ") " + x.getRivalryWins() + "-" + y.getRivalryWins();
 
     }
 

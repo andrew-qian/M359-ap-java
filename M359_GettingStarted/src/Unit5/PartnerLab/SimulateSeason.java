@@ -2,12 +2,7 @@ package Unit5.PartnerLab;
 
 public class SimulateSeason {
     private static int yearNum = 2021;
-    /**
-     * Helper method for simulateSeason, simulates a single game between the Team object initiated and a randomly generated team
-     * @param x Team object that is already initiated
-     * @param y randomly generated team that team x plays in a game
-     * @return Returns true or false based on whether team x beats team y
-     */
+
     public static String simulateGame(Team x, Team y) {
         String output = "";
         double winChance;
@@ -117,12 +112,6 @@ public class SimulateSeason {
 
     }
 
-    /**
-     * Runs simulateGame 17 times and then sums up the wins/losses and win percentage
-     * @param x Team object that is already initiated
-     */
-
-
     public static String simulateSeason(Team x, Team x2) { // add another usage of a Team object
         String result = "";
         String[] prevTeamNames = new String[34];
@@ -138,7 +127,9 @@ public class SimulateSeason {
         x2.setWins(0);
         x2.setLosses(0);
         yearNum++;
+
         result += "Year: " + yearNum + " (" + x.getTeamName() + ")\n";
+
         String thanksgivingGameResult = simulateGame(x, x2);
         String thanksgivingGameResultOpposite;
         if (thanksgivingGameResult.charAt(0) == 'W'){
@@ -266,7 +257,7 @@ public class SimulateSeason {
                 + "\nPlayer Strength: " + x2.getTeamStarPlayer().getPlayerStrength() + "\n\n";
 
         result += "Year: " + yearNum + " (" + x2.getTeamName() + ")\n";
-        for (int i = 1; i < 17; i++) { // prints out both L or both W for both teams, fix
+        for (int i = 1; i < 17; i++) {
             int homeOrAway = (int) (Math.random() * 2);
             if (i == 12) {
                 String defaultPrintout = "Week " + i + ": " + thanksgivingGameResultOpposite.substring(1) + " (" + thanksgivingGameResultOpposite.charAt(0) + ") ";
@@ -347,10 +338,6 @@ public class SimulateSeason {
     }
 
 
-    /**
-     * Checks the total wins/losses and win percentage through all years
-      * @return Returns win loss percentage and total wins/losses
-     */
     public static String franchiseLog(Team x){
         double winLossPercentage = Math.round((double)(x.getTotalWins())/(((yearNum -2021)*16)) * 100 * 100.0) / 100.0;
         String output = "Team: " + x.getTeamName() + "\nYears Played: " + (yearNum - 2021) + "\nTotal Record: " + x.getTotalWins() + "-" + x.getTotalLosses() + " (" + winLossPercentage + "%)"
@@ -362,13 +349,13 @@ public class SimulateSeason {
         return output;
     }
     public static void main(String[] args) {
-        Team bears = new Team("Bears", 1, 1, "Justin Fields", 100);
-        Team lions = new Team("Lions", 16, 2, "Amon Ra St. Brown", 50);
+        Team bears = new Team("Bears", 22, 22, "Justin Fields", 50);
+        Team seahawks = new Team("Seahawks", 1, 1, "Geno Smith", 100);
         for (int i = 0; i < 1; i++){
-            System.out.println(simulateSeason(bears, lions));
+            System.out.println(simulateSeason(bears, seahawks));
         }
         System.out.println(franchiseLog(bears));
-        System.out.println(franchiseLog(lions));
+        System.out.println(franchiseLog(seahawks));
     }
 
 
