@@ -1,9 +1,11 @@
 package Unit5.PartnerLab;
 
 public class Team {
-    private int defenseRanking, offenseRanking, wins, sbWins, losses;
+    private int defenseRanking, offenseRanking, wins, sbWins, losses, rivalryWins;
     private StarPlayer teamStarPlayer;
     private String teamName;
+
+    private static String rivalryRecord = "";
 
 
     String[] teamNameArray = {"49ers", "Bears", "Bengals", "Bills", "Broncos", "Browns", "Buccaneers", "Cardinals", "Chargers",
@@ -14,10 +16,12 @@ public class Team {
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
         this.teamName = teamName;
-        this.teamStarPlayer = new StarPlayer(playerName, playerStrength);
+        teamStarPlayer = new StarPlayer(playerName, playerStrength);
         wins = 0;
         losses = 0;
         sbWins = 0;
+        rivalryWins = 0;
+
     }
 
     public Team(int offenseRanking, int defenseRanking) {
@@ -28,6 +32,7 @@ public class Team {
         wins = 0;
         losses = 0;
         sbWins = 0;
+
     }
 
     public Team(){
@@ -97,5 +102,22 @@ public class Team {
 
     public void setLosses(int losses) {
         this.losses = losses;
+    }
+
+    public int getRivalryWins() {
+        return rivalryWins;
+    }
+
+    public void setRivalryWins(int rivalryWins) {
+        this.rivalryWins = rivalryWins;
+    }
+
+    public void setRivalryRecord(Team x, Team y){
+        rivalryRecord = x.getTeamName() + " vs " +  y.getTeamName() + " " +x.getRivalryWins() + "-" + y.getRivalryWins();
+
+    }
+
+    public static String getRivalryRecord() {
+        return rivalryRecord;
     }
 }

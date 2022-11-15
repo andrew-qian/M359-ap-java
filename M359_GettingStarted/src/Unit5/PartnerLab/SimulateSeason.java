@@ -44,7 +44,10 @@ public class SimulateSeason {
         }  else {
             winChance = 20;
         }
-        winChance *= (1+.25/(101-(StarPlayer.getPlayerStrength())));
+        if (x.getTeamStarPlayer() != null){
+            winChance *= (1+.25/(101-(x.getTeamStarPlayer().getPlayerStrength())));
+        }
+
 
         if (winChance > randInt) {
             output += "W";
@@ -136,65 +139,183 @@ public class SimulateSeason {
         }
     }
 
-    public static String simulateSeason(Team x, Team x_2) { // add another usage of a Team object
+    public static String simulateSeason(Team x, Team x2) { // add another usage of a Team object
         String result = "";
-        String[] prevTeamNames = new String[18];
+        String[] prevTeamNames = new String[19];
+        prevTeamNames[0] = x.getTeamName();
+
         if (yearNum == 2021){
             result += "Team: " + x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")\nStar Player: " + x.getTeamStarPlayer().getPlayerName()
-                    + "\nPlayer Strength: " + StarPlayer.getPlayerStrength() + "\n\n";
+                    + "\nPlayer Strength: " + x.getTeamStarPlayer().getPlayerStrength() + "\n\n";
         }
 
         x.setWins(0);
         x.setLosses(0);
         yearNum++;
         result += "Year: " + yearNum + "\n";
-
-        for (int i = 1; i < 18; i++) {
-            int homeOrAway = (int)(Math.random()*2);
-            Team y = new Team();
-
-            for (int j = 0; j < prevTeamNames.length-1; j++){ // doesn't work to cancel out duplicates
-                if (y.getTeamName().equals(prevTeamNames[j])){
-                    y = new Team();
-                    j = 0;
+        String thanksgivingGameResult = simulateGame(x, x2);
+        String thanksgivingGameResultOpposite;
+        if (thanksgivingGameResult.charAt(0) == 'W'){
+            thanksgivingGameResultOpposite = "L" + thanksgivingGameResult.substring(1);
+            for (int i = 1; i < thanksgivingGameResultOpposite.length(); i++){
+                if (thanksgivingGameResultOpposite.charAt(i) == '-'){
+                    thanksgivingGameResultOpposite = thanksgivingGameResultOpposite.charAt(0) + thanksgivingGameResultOpposite.substring(i+1) + "-" + thanksgivingGameResultOpposite.substring(1,i);
                 }
             }
-            prevTeamNames[i] = y.getTeamName();
-
-            simulateWeeks(y,i-1);
-
-            String gameResult = simulateGame(x, y);
-            String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
-
-            if (gameResult.charAt(0) == 'W') {
-                y.setLosses(y.getLosses() + 1);
-                totalWins++;
-                x.setWins(x.getWins() + 1);
-                String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
-                String xPrintout = x.getTeamName() + " (" + x.getWins() + "-" + x.getLosses() + ")";
-                if (homeOrAway == 0){
-                    result += defaultPrintout + "@ " +yPrintout + "\n";
-                }
-                else{
-                    result += defaultPrintout +  "vs " +yPrintout + "\n";
-                }
-            }
-            else {
-                y.setWins(y.getWins() + 1);
-                totalLosses++;
-                x.setLosses(x.getLosses() + 1);
-                String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
-                String xPrintout = x.getTeamName() + " (" + x.getWins() + "-" + x.getLosses() + ")";
-                if (homeOrAway == 0){
-                    result += defaultPrintout + "@ " +yPrintout + "\n";
-                }
-                else{
-                    result += defaultPrintout + "vs " +yPrintout + "\n";
+        }
+        else{
+            thanksgivingGameResultOpposite = "W" + thanksgivingGameResult.substring(1);
+            for (int i = 1; i < thanksgivingGameResultOpposite.length(); i++){
+                if (thanksgivingGameResultOpposite.charAt(i) == '-'){
+                    thanksgivingGameResultOpposite = thanksgivingGameResultOpposite.charAt(0) + thanksgivingGameResultOpposite.substring(i+1) + "-" + thanksgivingGameResultOpposite.substring(1,i);
                 }
             }
 
         }
 
+        for (int i = 1; i < 18; i++) {
+            if (i == 12) {
+                int homeOrAway = (int) (Math.random() * 2);
+                String gameResult = thanksgivingGameResult;
+                String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
+
+                if (gameResult.charAt(0) == 'W') {
+                    x2.setLosses(x2.getLosses() + 1);
+                    totalWins++;
+                    x.setRivalryWins(x.getRivalryWins()+1);
+                    String yPrintout = x2.getTeamName() + " (" + x2.getWins() + "-" + x2.getLosses() + ")";
+                    if (homeOrAway == 0) {
+                        result += defaultPrintout + "@ " + yPrintout + "\n";
+                    } else {
+                        result += defaultPrintout + "vs " + yPrintout + "\n";
+                    }
+
+                } else {
+                    x2.setWins(x2.getWins() + 1);
+                    x2.setRivalryWins(x2.getRivalryWins()+1);
+                    totalLosses++;
+                    String yPrintout = x2.getTeamName() + " (" + x2.getWins() + "-" + x2.getLosses() + ")";
+                    if (homeOrAway == 0) {
+                        result += defaultPrintout + "@ " + yPrintout + "\n";
+                    } else {
+                        result += defaultPrintout + "vs " + yPrintout + "\n";
+                    }
+                }
+                x.setRivalryRecord(x,x2);
+            }
+
+            else {
+                int homeOrAway = (int) (Math.random() * 2);
+                Team y = new Team();
+
+                for (int j = 0; j < prevTeamNames.length - 1; j++) { // code to cancel out duplicate names
+                    while (y.getTeamName().equals(prevTeamNames[j])) {
+                        y = new Team();
+                        j = 0;
+                    }
+                }
+                prevTeamNames[i] = y.getTeamName();
+
+                simulateWeeks(y, i - 1);
+
+                String gameResult = simulateGame(x, y);
+                String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
+
+                if (gameResult.charAt(0) == 'W') {
+                    y.setLosses(y.getLosses() + 1);
+                    totalWins++;
+                    x.setWins(x.getWins() + 1);
+                    String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
+                    if (homeOrAway == 0) {
+                        result += defaultPrintout + "@ " + yPrintout + "\n";
+                    } else {
+                        result += defaultPrintout + "vs " + yPrintout + "\n";
+                    }
+                } else {
+                    y.setWins(y.getWins() + 1);
+                    totalLosses++;
+                    x.setLosses(x.getLosses() + 1);
+                    String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
+                    if (homeOrAway == 0) {
+                        result += defaultPrintout + "@ " + yPrintout + "\n";
+                    } else {
+                        result += defaultPrintout + "vs " + yPrintout + "\n";
+                    }
+
+                }
+            }
+        }
+
+        for (int i = 1; i < 18; i++) { // prints out both L or both W for both teams, fix
+            if (i == 12) {
+                int homeOrAway = (int) (Math.random() * 2);
+                String gameResult = thanksgivingGameResultOpposite;
+                String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
+
+                if (gameResult.charAt(0) == 'W') {
+                    x.setLosses(x.getLosses() + 1);
+                    totalWins++;
+                    x2.setWins(x2.getWins() + 1);
+                    String yPrintout = x.getTeamName() + " (" + x.getWins() + "-" + x.getLosses() + ")";
+                    if (homeOrAway == 0) {
+                        result += defaultPrintout + "@ " + yPrintout + "\n";
+                    } else {
+                        result += defaultPrintout + "vs " + yPrintout + "\n";
+                    }
+                } else {
+                    x.setWins(x.getWins() + 1);
+                    totalLosses++;
+                    x2.setLosses(x2.getLosses() + 1);
+                    String yPrintout = x.getTeamName() + " (" + x.getWins() + "-" + x.getLosses() + ")";
+                    if (homeOrAway == 0) {
+                        result += defaultPrintout + "@ " + yPrintout + "\n";
+                    } else {
+                        result += defaultPrintout + "vs " + yPrintout + "\n";
+                    }
+                }
+            }
+
+            else {
+                int homeOrAway = (int) (Math.random() * 2);
+                Team y = new Team();
+
+                for (int j = 0; j < prevTeamNames.length - 1; j++) { // code to cancel out duplicate names
+                    while (y.getTeamName().equals(prevTeamNames[j])) {
+                        y = new Team();
+                        j = 0;
+                    }
+                }
+                prevTeamNames[i] = y.getTeamName();
+
+                simulateWeeks(y, i - 1);
+
+                String gameResult = simulateGame(x2, y);
+                String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
+
+                if (gameResult.charAt(0) == 'W') {
+                    y.setLosses(y.getLosses() + 1);
+                    totalWins++;
+                    x2.setWins(x2.getWins() + 1);
+                    String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
+                    if (homeOrAway == 0) {
+                        result += defaultPrintout + "@ " + yPrintout + "\n";
+                    } else {
+                        result += defaultPrintout + "vs " + yPrintout + "\n";
+                    }
+                } else {
+                    y.setWins(y.getWins() + 1);
+                    totalLosses++;
+                    x2.setLosses(x2.getLosses() + 1);
+                    String yPrintout = y.getTeamName() + " (" + y.getWins() + "-" + y.getLosses() + ")";
+                    if (homeOrAway == 0) {
+                        result += defaultPrintout + "@ " + yPrintout + "\n";
+                    } else {
+                        result += defaultPrintout + "vs " + yPrintout + "\n";
+                    }
+
+                }
+            }
+        }
 
         double winLossPercentage = Math.round((double)(x.getWins())/(17)*100 * 100.0) / 100.0;;
         result += "\nRecord: " + x.getWins() + "-" + x.getLosses() + " (" + winLossPercentage + "%)\n";
@@ -224,6 +345,7 @@ public class SimulateSeason {
             perfectSeason = true;
             perfectSeasonYear = yearNum;
         }
+        result += Team.getRivalryRecord();
         return result;
     }
 
@@ -236,17 +358,17 @@ public class SimulateSeason {
         double winLossPercentage = Math.round((double)(totalWins)/(((yearNum -2021)*17)) * 100 * 100.0) / 100.0;
         String output = "Years Played: " + (yearNum - 2021) + "\nTotal Record: " + totalWins + "-" + totalLosses + " (" + winLossPercentage + "%)"
                 + "\nSuper Bowl Wins: " + SBWins;
-        /*if (perfectSeason){
+        if (perfectSeason){
             output += "\nYOU HAD A PERFECT SEASON YEAR: " + perfectSeasonYear;
         }
-         */
+
         return output;
     }
     public static void main(String[] args) {
         Team bears = new Team("Bears", 12, 11, "Justin Fields", 85);
-        Team seahawks = new Team("Seahawks", 2, 2, "Geno Smith", 90);
-        for (int i = 0; i < 20; i++){
-            System.out.println(simulateSeason(bears, seahawks));
+        Team lions = new Team("Lions", 16, 31, "Amon Ra St. Brown", 50);
+        for (int i = 0; i < 1; i++){
+            System.out.println(simulateSeason(bears, lions));
         }
         System.out.println(franchiseLog());
     }
