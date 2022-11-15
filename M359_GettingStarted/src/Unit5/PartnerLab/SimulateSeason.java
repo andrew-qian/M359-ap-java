@@ -75,7 +75,7 @@ public class SimulateSeason {
 
                 randScoreY = randScoreX - randomScore(2,1);
                 while (randScoreY < 0 || randScoreY == 4|| randScoreY == 1){
-                    randScoreY = randScoreX - randomScore(2,1);;
+                    randScoreY = randScoreX - randomScore(2,1);
                 }
             }
             else if (withinFive){
@@ -160,12 +160,11 @@ public class SimulateSeason {
         }
 
         for (int i = 1; i < 17; i++) {
+            int homeOrAway = (int) (Math.random() * 2);
             if (i == 12) {
-                int homeOrAway = (int) (Math.random() * 2);
-                String gameResult = thanksgivingGameResult;
-                String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
+                String defaultPrintout = "Week " + i + ": " + thanksgivingGameResult.substring(1) + " (" + thanksgivingGameResult.charAt(0) + ") ";
 
-                if (gameResult.charAt(0) == 'W') {
+                if (thanksgivingGameResult.charAt(0) == 'W') {
                     x2.setLosses(x2.getLosses() + 1);
                     x2.setTotalLosses(x2.getTotalLosses()+1);
 
@@ -184,6 +183,7 @@ public class SimulateSeason {
                     x2.setWins(x2.getWins() + 1);
                     x2.setTotalWins(x2.getTotalWins()+1);
                     x2.setRivalryWins(x2.getRivalryWins()+1);
+
                     x.setLosses(x.getLosses() + 1);
                     x.setTotalLosses(x.getTotalLosses()+1);
 
@@ -198,7 +198,6 @@ public class SimulateSeason {
             }
 
             else {
-                int homeOrAway = (int) (Math.random() * 2);
                 Team y = new Team();
 
                 for (int j = 0; j < prevTeamNames.length - 1; j++) { // code to cancel out duplicate names
@@ -235,7 +234,7 @@ public class SimulateSeason {
                 }
             }
         }
-        double winLossPercentage = Math.round((double)(x.getWins())/(16)*100 * 100.0) / 100.0;;
+        double winLossPercentage = Math.round((double)(x.getWins())/(16)*100 * 100.0) / 100.0;
         result += "\nRecord: " + x.getWins() + "-" + x.getLosses() + " (" + winLossPercentage + "%)\n";
 
         //playoffs
@@ -268,30 +267,18 @@ public class SimulateSeason {
 
         result += "Year: " + yearNum + " (" + x2.getTeamName() + ")\n";
         for (int i = 1; i < 17; i++) { // prints out both L or both W for both teams, fix
+            int homeOrAway = (int) (Math.random() * 2);
             if (i == 12) {
-                int homeOrAway = (int) (Math.random() * 2);
-                String gameResult = thanksgivingGameResultOpposite;
-                String defaultPrintout = "Week " + i + ": " + gameResult.substring(1) + " (" + gameResult.charAt(0) + ") ";
-
-                if (gameResult.charAt(0) == 'W') {
-                    String yPrintout = x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")";
-                    if (homeOrAway == 0) {
-                        result += defaultPrintout + "@ " + yPrintout + "\n";
-                    } else {
-                        result += defaultPrintout + "vs " + yPrintout + "\n";
-                    }
+                String defaultPrintout = "Week " + i + ": " + thanksgivingGameResultOpposite.substring(1) + " (" + thanksgivingGameResultOpposite.charAt(0) + ") ";
+                String yPrintout = x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")";
+                if (homeOrAway == 0) {
+                    result += defaultPrintout + "@ " + yPrintout + "\n";
                 } else {
-                    String yPrintout = x.getTeamName() + " (#" + x.getOffenseRanking() + ", #" + x.getDefenseRanking() + ")";
-                    if (homeOrAway == 0) {
-                        result += defaultPrintout + "@ " + yPrintout + "\n";
-                    } else {
-                        result += defaultPrintout + "vs " + yPrintout + "\n";
-                    }
+                    result += defaultPrintout + "vs " + yPrintout + "\n";
                 }
             }
 
             else {
-                int homeOrAway = (int) (Math.random() * 2);
                 Team y = new Team();
 
                 for (int j = 0; j < prevTeamNames.length; j++) { // code to cancel out duplicate names
@@ -328,7 +315,7 @@ public class SimulateSeason {
             }
         }
 
-        winLossPercentage = Math.round((double)(x2.getWins())/(16)*100 * 100.0) / 100.0;;
+        winLossPercentage = Math.round((double)(x2.getWins())/(16)*100 * 100.0) / 100.0;
         result += "\nRecord: " + x2.getWins() + "-" + x2.getLosses() + " (" + winLossPercentage + "%)\n";
 
         wonSB = false;
