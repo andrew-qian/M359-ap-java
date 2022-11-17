@@ -23,7 +23,7 @@ public class Team {
         defenseRanking = (int)(Math.random()*32+1);
         offenseRanking = (int)(Math.random()*32+1);
         this.teamName = teamNameArray[randInt];
-        teamStarPlayer = new StarPlayer("", 0);
+
         wins = 0;
         losses = 0;
         sbWins = 0;
@@ -54,7 +54,7 @@ public class Team {
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
         this.teamName = teamNameArray[randInt];
-        teamStarPlayer = new StarPlayer("", 0);
+
         wins = 0;
         losses = 0;
         sbWins = 0;

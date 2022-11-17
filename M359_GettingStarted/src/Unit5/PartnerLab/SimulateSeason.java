@@ -3,6 +3,22 @@ package Unit5.PartnerLab;
 public class SimulateSeason {
     private static int yearNum = 2021;
 
+    public static void main(String[] args) {
+        Team bears = new Team("Bears", 10, 12, "Justin Fields", 85);
+        Team lions = new Team("Lions", 26, 16, "Jared Goff", 60);
+        for (int i = 0; i < 100; i++){
+            System.out.println(simulateSeason(bears, lions));
+        }
+        System.out.println(franchiseLog(bears));
+        System.out.println(franchiseLog(lions));
+    }
+
+    /**
+     * This methods simulates a football game between two team
+     * @param x first team that will face off against the second team
+     * @param y second team that will face off against the first team
+     * @return  returns which team won and the score of the game with the rankings off the second team
+     */
     public static String simulateGame(Team x, Team y) {
         String output = "";
         double winChance;
@@ -49,10 +65,23 @@ public class SimulateSeason {
         return output;
     }
 
+    /**
+     *  helper method that returns a random score based on the two parameters and is used in calculateScore
+     * @param x first number that is used to calculate a random score, is based on the score of the game
+     * @param y second number that is used to calculate a random score, is based on the score of the game
+     * @return a random score using parameters x and y
+     */
     public static int randomScore(int x, int y){
         return 7*(int)(Math.random() * x + 1) + 3*(int)(Math.random() * y + 1);
     }
 
+    /**
+     * Based on rankings of the two teams will calculate the score for the game between team x and team y
+     * @param winOrLoss whether the team won or lost
+     * @param x the team that is playing team y
+     * @param y the team that is playing team x
+     * @return the score of the game between team x and y
+     */
     public static String calculateScore(String winOrLoss, Team x, Team y){
         int randScoreX;
         int randScoreY;
@@ -67,7 +96,6 @@ public class SimulateSeason {
         if (winOrLoss.equals("W")){
             randScoreX = randomScore(6,3);
             if (withinTwo){
-
                 randScoreY = randScoreX - randomScore(2,1);
                 while (randScoreY < 0 || randScoreY == 4|| randScoreY == 1){
                     randScoreY = randScoreX - randomScore(2,1);
@@ -112,6 +140,12 @@ public class SimulateSeason {
 
     }
 
+    /**
+     *  simulates an entire season for a team and the amount of games they've won/loss
+     * @param x the team that is getting their season simulated
+     * @param x2 rivarly team that team x will play in rivalry game
+     * @return an output of the total season for team x
+     */
     public static String simulateSeason(Team x, Team x2) { // add another usage of a Team object
         String result = "";
         String[] prevTeamNames = new String[34];
@@ -352,7 +386,11 @@ public class SimulateSeason {
         return result;
     }
 
-
+    /**
+     * this method creates a franchise log depicting the stats of the team
+     * @param x the team that the franchise log will be based on
+     * @return a string returning the total record of the team, super bowl wins, if they had a perfect season etc
+     */
     public static String franchiseLog(Team x){
         double winLossPercentage = Math.round((double)(x.getTotalWins())/(((yearNum -2021)*16)) * 100 * 100.0) / 100.0;
         String output = "Team: " + x.getTeamName() + "\nYears Played: " + (yearNum - 2021)
@@ -364,15 +402,8 @@ public class SimulateSeason {
 
         return output;
     }
-    public static void main(String[] args) {
-        Team bears = new Team("Bears", 22, 22, "Justin Fields", 50);
-        Team seahawks = new Team("Seahawks", 1, 1, "Geno Smith", 100);
-        for (int i = 0; i < 200; i++){
-            System.out.println(simulateSeason(bears, seahawks));
-        }
-        System.out.println(franchiseLog(bears));
-        System.out.println(franchiseLog(seahawks));
-    }
+
 
 
 }
+
