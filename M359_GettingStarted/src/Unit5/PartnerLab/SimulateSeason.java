@@ -367,7 +367,7 @@ public class SimulateSeason {
     public static void main(String[] args) {
         Team bears = new Team("Bears", 22, 22, "Justin Fields", 50);
         Team seahawks = new Team("Seahawks", 1, 1, "Geno Smith", 100);
-        for (int i = 0; i < 1; i++){
+        for (int i = 0; i < 200; i++){
             System.out.println(simulateSeason(bears, seahawks));
         }
         System.out.println(franchiseLog(bears));
