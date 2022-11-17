@@ -4,9 +4,9 @@ public class SimulateSeason {
     private static int yearNum = 2021;
 
     public static void main(String[] args) {
-        Team bears = new Team("Bears", 10, 12, "Justin Fields", 85);
+        Team bears = new Team("Bears", 1, 1, "Justin Fields", 100);
         Team lions = new Team("Lions", 26, 16, "Jared Goff", 60);
-        for (int i = 0; i < 100; i++){
+        for (int i = 0; i < 10; i++){
             System.out.println(simulateSeason(bears, lions));
         }
         System.out.println(franchiseLog(bears));
@@ -50,9 +50,9 @@ public class SimulateSeason {
         }  else {
             winChance = 20;
         }
-        if (x.getTeamStarPlayer() != null){
-            winChance *= (1+.25/(101-(x.getTeamStarPlayer().getPlayerStrength())));
-        }
+
+        winChance *= (1+.25/(101-(x.getTeamStarPlayer().getPlayerStrength())));
+
 
 
         if (winChance > randInt) {
