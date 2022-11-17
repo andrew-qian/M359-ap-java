@@ -343,7 +343,7 @@ public class SimulateSeason {
         String output = "Team: " + x.getTeamName() + "\nYears Played: " + (yearNum - 2021) + "\nTotal Record: " + x.getTotalWins() + "-" + x.getTotalLosses() + " (" + winLossPercentage + "%)"
                 + "\nSuper Bowl Wins: " + x.getSbWins() + "\n";
         if (x.isHasPerfectSeason()){
-            output += "YOU HAD A PERFECT SEASON YEAR: " + x.getPerfectSeasonYear() + "\n";
+            output += "PERFECT SEASON YEAR: " + x.getPerfectSeasonYear() + "\n";
         }
 
         return output;
@@ -351,7 +351,7 @@ public class SimulateSeason {
     public static void main(String[] args) {
         Team bears = new Team("Bears", 22, 22, "Justin Fields", 50);
         Team seahawks = new Team("Seahawks", 1, 1, "Geno Smith", 100);
-        for (int i = 0; i < 1; i++){
+        for (int i = 0; i < 200; i++){
             System.out.println(simulateSeason(bears, seahawks));
         }
         System.out.println(franchiseLog(bears));

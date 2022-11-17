@@ -1,7 +1,9 @@
+
 package Unit5.PartnerLab;
 
 public class Team {
-    private int defenseRanking, offenseRanking, wins, sbWins, losses, rivalryWins, totalWins, totalLosses, perfectSeasonYear;
+    private int defenseRanking, offenseRanking, wins, sbWins, losses,
+            rivalryWins, totalWins, totalLosses, perfectSeasonYear;
     private boolean hasPerfectSeason;
     private StarPlayer teamStarPlayer;
     private String teamName;
@@ -9,9 +11,24 @@ public class Team {
     private static String rivalryRecord = "";
 
 
-    String[] teamNameArray = {"49ers", "Bears", "Bengals", "Bills", "Broncos", "Browns", "Buccaneers", "Cardinals", "Chargers",
-            "Chiefs", "Colts", "Commanders", "Cowboys", "Dolphins", "Eagles", "Falcons", "Giants", "Jaguars", "Jets", "Lions",
-            "Packers", "Panthers", "Patriots", "Raiders", "Rams", "Ravens", "Saints", "Seahawks", "Steelers", "Texans", "Titans", "Vikings"};
+    String[] teamNameArray = {"49ers", "Bears", "Bengals", "Bills", "Broncos",
+            "Browns", "Buccaneers", "Cardinals", "Chargers",
+            "Chiefs", "Colts", "Commanders", "Cowboys", "Dolphins", "Eagles",
+            "Falcons", "Giants", "Jaguars", "Jets", "Lions",
+            "Packers", "Panthers", "Patriots", "Raiders", "Rams", "Ravens",
+            "Saints", "Seahawks", "Steelers", "Texans", "Titans", "Vikings"};
+
+    public Team(){
+        int randInt = (int)(Math.random()*32);
+        defenseRanking = (int)(Math.random()*32+1);
+        offenseRanking = (int)(Math.random()*32+1);
+        this.teamName = teamNameArray[randInt];
+
+        losses = 0;
+        wins = 0;
+        sbWins = 0;
+
+    }
 
     public Team(String teamName, int offenseRanking, int defenseRanking, String playerName, int playerStrength) {
         this.defenseRanking = defenseRanking;
@@ -27,27 +44,13 @@ public class Team {
         perfectSeasonYear = 0;
         hasPerfectSeason = false;
 
-    }
-
-    public Team(int offenseRanking, int defenseRanking) {
+    }public Team(int offenseRanking, int defenseRanking) {
         int randInt = (int)(Math.random()*32);
         this.defenseRanking = defenseRanking;
         this.offenseRanking = offenseRanking;
         this.teamName = teamNameArray[randInt];
         wins = 0;
         losses = 0;
-        sbWins = 0;
-
-    }
-
-    public Team(){
-        int randInt = (int)(Math.random()*32);
-        defenseRanking = (int)(Math.random()*32+1);
-        offenseRanking = (int)(Math.random()*32+1);
-        this.teamName = teamNameArray[randInt];
-
-        losses = 0;
-        wins = 0;
         sbWins = 0;
 
     }
