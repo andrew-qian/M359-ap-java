@@ -4,7 +4,7 @@ public class SimulateSeason {
     private static int yearNum = 2021;
 
     public static void main(String[] args) {
-        Team bears = new Team("Bears", 1, 1, "Justin Fields", 100);
+        Team bears = new Team("Bears", 5, 5, "Justin Fields", 85);
         Team lions = new Team("Lions", 26, 16, "Jared Goff", 60);
         for (int i = 0; i < 10; i++){
             System.out.println(simulateSeason(bears, lions));
@@ -14,7 +14,7 @@ public class SimulateSeason {
     }
 
     /**
-     * This methods simulates a football game between two team
+     * This method simulates a football game between two team
      * @param x first team that will face off against the second team
      * @param y second team that will face off against the first team
      * @return  returns which team won and the score of the game with the rankings off the second team
@@ -143,7 +143,7 @@ public class SimulateSeason {
     /**
      *  simulates an entire season for a team and the amount of games they've won/loss
      * @param x the team that is getting their season simulated
-     * @param x2 rivarly team that team x will play in rivalry game
+     * @param x2 rivalry team that team x will play in rivalry game
      * @return an output of the total season for team x
      */
     public static String simulateSeason(Team x, Team x2) { // add another usage of a Team object
