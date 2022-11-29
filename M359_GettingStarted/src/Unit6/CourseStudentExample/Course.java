@@ -21,12 +21,18 @@ public class Course {
     public String toString(){
         String output = "Per: " + period + "\t" + currentGrade + "\t" + subject;
         if (subject.length() < 4){
-            output += "\t\t\t\t";
+            output += "\t\t\t\t\t\t";
         } else if (subject.length() < 8) {
-            output += "\t\t\t";
+            output += "\t\t\t\t\t";
         } else if (subject.length() < 12) {
-            output += "\t\t";
+            output += "\t\t\t\t";
         } else if (subject.length() < 16) {
+            output += "\t\t\t";
+        }
+        else if (subject.length() < 20) {
+            output += "\t\t";
+        }
+        else if (subject.length() < 24) {
             output += "\t";
         }
         return output + teacherName + "\n";
