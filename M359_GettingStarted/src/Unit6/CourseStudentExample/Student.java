@@ -14,12 +14,14 @@ public class Student {
         this.myClasses = myClasses;
     }
 
-    public String toString(){
-        String output = "Student Name: " + name + "\n";
-        for (int i = 0; i < myClasses.length; i++){
-            output += myClasses[i];
+    public String toString() {
+        String str = "";
+        str = "Student Name: " + name + "\n";
+        for (Course c: myClasses) {
+            if (c != null)
+                str += c.toString() + "\n";
         }
-        return output;
+        return str;
     }
 
     public String getName() {

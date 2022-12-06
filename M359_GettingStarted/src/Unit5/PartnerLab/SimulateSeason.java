@@ -17,6 +17,10 @@ public class SimulateSeason {
 
     /**
      * This method simulates a football game between two team
+=======
+    /**
+     * This methods simulates a football game between two team
+>>>>>>> Stashed changes
      * @param x first team that will face off against the second team
      * @param y second team that will face off against the first team
      * @return  returns which team won and the score of the game with the rankings off the second team
@@ -145,7 +149,11 @@ public class SimulateSeason {
     /**
      *  simulates an entire season for a team and the amount of games they've won/loss
      * @param x the team that is getting their season simulated
+<<<<<<< Updated upstream
      * @param x2 rivalry team that team x will play in rivalry game
+=======
+     * @param x2 rivarly team that team x will play in rivalry game
+>>>>>>> Stashed changes
      * @return an output of the total season for team x
      */
     public static String simulateSeason(Team x, Team x2) { // add another usage of a Team object

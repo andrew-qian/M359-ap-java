@@ -14,28 +14,24 @@ public class Course {
     public Course(String subject, int period) {
         this.subject = subject;
         this.period = period;
-        currentGrade = "-";
-        teacherName = "";
     }
 
-    public String toString(){
-        String output = "Per: " + period + "\t" + currentGrade + "\t" + subject;
-        if (subject.length() < 4){
-            output += "\t\t\t\t\t\t";
-        } else if (subject.length() < 8) {
-            output += "\t\t\t\t\t";
-        } else if (subject.length() < 12) {
-            output += "\t\t\t\t";
-        } else if (subject.length() < 16) {
-            output += "\t\t\t";
+    public String toString() {
+        String str = "";
+        str += "Per: " + period + "   ";
+        if (!currentGrade.equals("None"))
+            str += currentGrade + "\t\t";
+        else
+            str += "--\t\t";
+        str += subject;
+
+        int len = subject.length();
+        for (int i = len; i < 30; i++) {
+            str += " ";
         }
-        else if (subject.length() < 20) {
-            output += "\t\t";
-        }
-        else if (subject.length() < 24) {
-            output += "\t";
-        }
-        return output + teacherName + "\n";
+        if (teacherName != null)
+            str += teacherName;
+        return str;
     }
 
     public String getTeacherName() {
