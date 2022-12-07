@@ -19,7 +19,7 @@ public class Student {
         str = "Student Name: " + name + "\n";
         for (Course c: myClasses) {
             if (c != null)
-                str += c.toString() + "\n";
+                str += c + "\n";
         }
         return str;
     }
