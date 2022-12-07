@@ -1,26 +1,33 @@
 package Unit6.TriviaGame;
 
-public class TriviaGame {
-    private Questions[] questions;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
-    public TriviaGame(Questions[] questions) {
+public class TriviaGame {
+    private Question[] questions;
+
+    private static int pointTotal = 0;
+
+    public TriviaGame(Question[] questions) {
         this.questions = questions;
     }
 
     public String toString(){
         String str = "Welcome to NFL Trivia!\n";
-        for (Questions q: questions){
-            if (q != null)
-                str += q + "\n";
+        for (int i = 0; i < questions.length; i++){
+            if (questions[i] != null)
+                str += questions[i] + "\n";
         }
         return str;
     }
 
-    public Questions[] getQuestions() {
+
+    public Question[] getQuestions() {
         return questions;
     }
 
-    public void setQuestions(Questions[] questions) {
+    public void setQuestions(Question[] questions) {
         this.questions = questions;
     }
 }

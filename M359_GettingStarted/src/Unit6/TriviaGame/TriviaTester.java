@@ -1,21 +1,25 @@
 package Unit6.TriviaGame;
 
-import Unit6.CourseStudentExample.Student;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class TriviaTester {
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("TriviaQuestions.txt");
+        Question[] allQuestions = readFile("TriviaQuestions.txt");
+        TriviaGame game = new TriviaGame(allQuestions);
+
+        System.out.println(game);
+    }
+
+    public static Question[] readFile(String pathname) throws FileNotFoundException {
+        File file = new File(pathname);
         Scanner inf = new Scanner(file);
         inf.nextLine();
 
-
-        TriviaGame game = null;
+        Question[] allQuestions = new Question[3];
         while (inf.hasNextLine()) {
-            Questions[] allQuestions = new Questions[3];
+
 
             for (int i = 0; i < allQuestions.length; i++) {
                 String question = inf.nextLine();
@@ -30,11 +34,11 @@ public class TriviaTester {
                     inf.nextLine();
                 }
 
-                Questions q = new Questions(question, answerChoiceOne, answerChoiceTwo, answerChoiceThree, answerChoiceFour, answer, points);
+                Question q = new Question(question, answerChoiceOne, answerChoiceTwo, answerChoiceThree, answerChoiceFour, answer, points);
                 allQuestions[i] = q;
             }
-            game = new TriviaGame(allQuestions);
         }
-        System.out.println(game);
+
+        return allQuestions;
     }
 }

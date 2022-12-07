@@ -1,14 +1,15 @@
 package Unit6.TriviaGame;
 
-public class Questions {
+
+public class Question {
     private String question;
     private String answerChoiceOne, answerChoiceTwo, answerChoiceThree, answerChoiceFour;
     private String answer;
     private int value;
 
-    public Questions(String question, String answerChoiceOne,
-                     String answerChoiceTwo, String answerChoiceThree, String answerChoiceFour,
-                     String answer, int value) {
+    public Question(String question, String answerChoiceOne,
+                    String answerChoiceTwo, String answerChoiceThree, String answerChoiceFour,
+                    String answer, int value) {
         this.question = question;
         this.answerChoiceOne = answerChoiceOne;
         this.answerChoiceTwo = answerChoiceTwo;
@@ -23,6 +24,7 @@ public class Questions {
         str += question + "\n";
         str += "a)" + answerChoiceOne + "\n" + "b)" + answerChoiceTwo + "\n" + "c)" + answerChoiceThree + "\n" + "d)" + answerChoiceFour + "\n";
         str += "Answer: ";
+
 
         return str;
     }
