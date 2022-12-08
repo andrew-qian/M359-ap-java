@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class TriviaGame {
     private Question[] questions;
 
-    private static int pointTotal = 0;
+    private static int index = 0;
 
     public TriviaGame(Question[] questions) {
         this.questions = questions;
@@ -21,6 +21,8 @@ public class TriviaGame {
         }
         return str;
     }
+
+
 
 
     public Question[] getQuestions() {
