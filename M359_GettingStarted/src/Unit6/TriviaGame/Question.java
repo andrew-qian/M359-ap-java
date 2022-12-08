@@ -21,7 +21,7 @@ public class Question {
 
     public String toString(){
         String str = "";
-        str += question + "\n";
+        str += question + " (" + value + ")\n";
         str += "a)" + answerChoiceOne + "\n" + "b)" + answerChoiceTwo + "\n" + "c)" + answerChoiceThree + "\n" + "d)" + answerChoiceFour + "\n";
         str += "Answer: ";
 

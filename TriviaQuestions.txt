@@ -1,22 +1,50 @@
-
+7
 Which NFL player is nicknamed "Nuke"?
 Antonio Brown
 Deandre Hopkins
 Amari Cooper
 AJ Green
-Deandre Hopkins
+b
 200
 What was Eli Manning's Original Team?
 Chargers
 Giants
 Browns
 Jets
-Chargers
+a
 150
 What is the only team to have had a perfect season?
 Bears
 Patriots
 Dolphins
 Giants
-Dolphins
+c
 100
+Who holds the NFL record for most passing yards in a single season?
+Tom Brady
+Drew Brees
+Joe Montana
+Peyton Manning
+d
+200
+Who was the first African American head coach to win a Super Bowl?
+Mike Tomlin
+Tony Dungy
+Dennis Green
+Herman Edwards
+b
+300
+Who holds the best rookie passer rating in NFL history?
+Tom Brady
+Dan Marino
+Dak Prescott
+Robert Griffin III
+c
+200
+What team drafted Brett Favre?
+Raiders
+Falcons
+Vikings
+Packers
+b
+300
