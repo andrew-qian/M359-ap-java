@@ -2,6 +2,10 @@ package Unit6.TriviaGame;
 
 
 public class Question {
+    // all data for ONE question: T
+    // NO file reading here: T
+
+    // toString to show how the question should be displayed: T
     private String question;
     private String answerChoiceOne, answerChoiceTwo, answerChoiceThree, answerChoiceFour;
     private String answer;

@@ -5,58 +5,38 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class TriviaGame {
+    // all data connected to the actual game: T
+    // nothing to do with the user who is currently playing: F
     private static Question[] questions;
-    private static int points = 0;
+    private int points;
 
 
 
 
     public TriviaGame(Question[] questions) {
-        TriviaGame.questions = questions;
-    }
-
-    public static void runGame(){
-        Question[] allQuestions = questions;
-        int[] indexes = new int[allQuestions.length];
-        for (int i = 0; i < allQuestions.length; i++){
-            indexes[i] = i;
-        }
-
-        for (int i = 0; i < allQuestions.length; i++){
-            int index = (int)(Math.random() * allQuestions.length);
-            while (indexes[index] == -1){
-                index = (int)(Math.random() * allQuestions.length);
+        Question[] shuffledQuestions = new Question[questions.length]; // randomizes order of questions in constructor (no method)
+        int index = (int)(Math.random() * shuffledQuestions.length);
+        for (int i = 0; i < shuffledQuestions.length; i++){
+            while (shuffledQuestions[index] != null){
+                index = (int)(Math.random() * shuffledQuestions.length);
             }
-
-            System.out.println(singleQuestion(allQuestions, index));
-            indexes[index] = -1;
+            shuffledQuestions[index] = questions[i];
         }
-
+        TriviaGame.questions = shuffledQuestions;
+        points = 0;
     }
 
+    // method to read the text file
 
-    public static String singleQuestion(Question[] allQuestions, int index){
-        Question q = allQuestions[index];
-        String str;
-        System.out.println(q);
-        Scanner n = new Scanner(System.in);
-        String input = n.nextLine();
 
-        if (input.equals(q.getAnswer())){
-            str = "Nice Job!";
-            points += q.getValue();
-        }
-        else{
-            str = "Nope! ";
-            str += "Right answer was: " + q.getAnswer();
-        }
 
-        str += "\nPoints: " + points;
 
-        return str;
-    }
+
 
     public static Question[] readFile(String pathname) throws FileNotFoundException {
+        // create file var
+        // create Scanner var from the File var
+        // user a loop to read in ALL question data and fill array
         File file = new File(pathname);
         Scanner inf = new Scanner(file);
         int questionNums = inf.nextInt();
@@ -92,6 +72,14 @@ public class TriviaGame {
 
     public void setQuestions(Question[] questions) {
         this.questions = questions;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }
 

@@ -11,8 +11,6 @@ public class SimulateSeason {
         }
         System.out.println(franchiseLog(bears));
         System.out.println(franchiseLog(lions));
-        double[] mums;
-        mums = new double[8];
     }
 
     /**
