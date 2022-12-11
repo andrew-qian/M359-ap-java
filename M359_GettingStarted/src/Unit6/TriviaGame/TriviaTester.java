@@ -23,13 +23,13 @@ public class TriviaTester {
 
         // gameplay
         for (int i = 0; i < game.getQuestions().length; i++){
-            System.out.println(singleQuestion(n, game.getQuestions(), i));
+            System.out.println(singleQuestion(n, game.getQuestions(), i, game));
         }
 
 
     }
 
-    public static String singleQuestion(Scanner n, Question[] allQuestions, int index){
+    public static String singleQuestion(Scanner n, Question[] allQuestions, int index, TriviaGame game){
         Question q = allQuestions[index];
         String str;
         System.out.println(q);
@@ -37,20 +37,26 @@ public class TriviaTester {
 
         if (checkAnswer(q, input)){
             str = "Nice Job!";
-             += q.getValue(); // MAKE IT SO POINT METHOD WORKS
+            game.setPoints(game.getPoints() + q.getValue()); // MAKE IT SO POINT METHOD WORKS
+            game.setStreak(game.getStreak()+1);
         }
         else{
             str = "Nope! ";
             str += "Right answer was: " + q.getAnswer();
+            game.setStreak(0);
         }
 
-        str += "\nPoints: " + points;
+        str += "\nPoints: " + game.getPoints();
+        str += "\nCurrent Streak: " + game.getStreak();
 
         return str;
+
+
     }
 
     public static boolean checkAnswer(Question q, String userAnswer){
         return q.getAnswer().equalsIgnoreCase(userAnswer);
     }
+
 
 }

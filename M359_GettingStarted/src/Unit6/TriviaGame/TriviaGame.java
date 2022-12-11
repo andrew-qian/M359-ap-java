@@ -6,11 +6,12 @@ import java.util.Scanner;
 
 public class TriviaGame {
     // all data connected to the actual game: T
-    // nothing to do with the user who is currently playing: F
+    // nothing to do with the user who is currently playing: T
     private static Question[] questions;
+
     private int points;
 
-
+    private int streak;
 
 
     public TriviaGame(Question[] questions) {
@@ -24,6 +25,7 @@ public class TriviaGame {
         }
         TriviaGame.questions = shuffledQuestions;
         points = 0;
+        streak = 0;
     }
 
     // method to read the text file
@@ -66,6 +68,8 @@ public class TriviaGame {
 
         return allQuestions;
     }
+
+
     public Question[] getQuestions() {
         return questions;
     }
@@ -80,6 +84,14 @@ public class TriviaGame {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public int getStreak() {
+        return streak;
+    }
+
+    public void setStreak(int streak) {
+        this.streak = streak;
     }
 }
 

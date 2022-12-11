@@ -1,5 +1,5 @@
-7
-Which NFL player is nicknamed "Nuke"?
+12
+Which NFL player is nicknamed "Nuk"?
 Antonio Brown
 Deandre Hopkins
 Amari Cooper
@@ -48,3 +48,38 @@ Vikings
 Packers
 b
 300
+How many times have the Dallas Cowboys been to the Super Bowl?
+3
+4
+5
+6
+c
+200
+Which team does Saquon Barkley play for?
+Jets
+Jaguars
+Giants
+Raiders
+c
+150
+Which team came from a 28-3 deficit to win Super Bowl LI?
+Steelers
+Rams
+Falcons
+Patriots
+d
+100
+Which player has the most passing yards in his first 100 games?
+Matthew Stafford
+Patrick Mahomes II
+Tom Brady
+Jared Goff
+a
+200
+Which player was the first overall pick in the 2016 NFL Draft?
+Ezekiel Elliot
+Jared Goff
+Carson Wentz
+Jalen Ramsey
+b
+200
