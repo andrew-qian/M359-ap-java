@@ -10,6 +10,8 @@ public class TriviaGame {
     private static Question[] questions;
 
     private int points;
+    private int correctQuestions;
+    private int questionsPlayed;
 
     private int streak;
 
@@ -26,6 +28,8 @@ public class TriviaGame {
         TriviaGame.questions = shuffledQuestions;
         points = 0;
         streak = 0;
+        correctQuestions = 0;
+        questionsPlayed = 0;
     }
 
     // method to read the text file
@@ -92,6 +96,22 @@ public class TriviaGame {
 
     public void setStreak(int streak) {
         this.streak = streak;
+    }
+
+    public int getCorrectQuestions() {
+        return correctQuestions;
+    }
+
+    public void setCorrectQuestions(int correctQuestions) {
+        this.correctQuestions = correctQuestions;
+    }
+
+    public int getQuestionsPlayed() {
+        return questionsPlayed;
+    }
+
+    public void setQuestionsPlayed(int questionsPlayed) {
+        this.questionsPlayed = questionsPlayed;
     }
 }
 
