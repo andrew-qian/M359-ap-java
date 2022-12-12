@@ -1,5 +1,8 @@
-package Unit6.TriviaGame;
+package Unit6.TriviaGame.Wager;
 
+
+import Unit6.TriviaGame.Question;
+import Unit6.TriviaGame.TriviaGame;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -11,8 +14,8 @@ public class TriviaTester {
     public static void main(String[] args) throws FileNotFoundException {
         // local variables
 
-        Question[] allQuestions = TriviaGame.readFile("TriviaQuestions.txt");
-        TriviaGame game = new TriviaGame(allQuestions);
+        Unit6.TriviaGame.Question[] allQuestions = Unit6.TriviaGame.TriviaGame.readFile("TriviaQuestions.txt");
+        Unit6.TriviaGame.TriviaGame game = new Unit6.TriviaGame.TriviaGame(allQuestions);
 
         // create my Scanner to interact with the user
         // only make ONE keyboard Scanner
@@ -23,6 +26,7 @@ public class TriviaTester {
         System.out.println(introText(n));
         // gameplay
         for (int i = 0; i < game.getQuestions().length; i++){
+            System.out.println(wager(n, i, game));
             System.out.println(singleQuestion(n, game.getQuestions(), i, game));
             System.out.println(continueGame(n, game));
         }
@@ -38,8 +42,8 @@ public class TriviaTester {
 
     }
 
-    public static String singleQuestion(Scanner n, Question[] allQuestions, int index, TriviaGame game){
-        Question q = allQuestions[index];
+    public static String singleQuestion(Scanner n, Unit6.TriviaGame.Question[] allQuestions, int index, Unit6.TriviaGame.TriviaGame game){
+        Unit6.TriviaGame.Question q = allQuestions[index];
         String str;
         System.out.println(q);
         String input = n.nextLine();
@@ -63,7 +67,7 @@ public class TriviaTester {
         return str;
     }
 
-    public static void endLog(TriviaGame game){
+    public static void endLog(Unit6.TriviaGame.TriviaGame game){
         double percentCorrect = (double)game.getCorrectQuestions()/game.getQuestionsPlayed()*100;
         percentCorrect = percentCorrect * Math.pow(10, 2);
         percentCorrect = Math.floor(percentCorrect);
@@ -103,5 +107,27 @@ public class TriviaTester {
         return q.getAnswer().equalsIgnoreCase(userAnswer);
     }
 
+    public static String wager(Scanner n, int i, TriviaGame game){
+        String str = "";
+        System.out.println("Wager? (y/n)");
+        String userInput = n.nextLine();
+
+        if (userInput.equalsIgnoreCase("y")){
+            System.out.println("How much? ");
+            int userWager = n.nextInt();
+            n.nextLine();
+
+            if (userWager > game.getPoints()) {
+                System.out.println("Wagered too much.");
+                wager(n, i, game);
+            }
+            game.getQuestions()[i].setValue(userWager);
+            str += "Ok, wager set.";
+        }
+        else{
+            str += "Ok, no wager.\n";
+        }
+        return str;
+    }
 
 }

@@ -1,4 +1,6 @@
-package Unit6.TriviaGame;
+package Unit6.TriviaGame.Wager;
+
+import Unit6.TriviaGame.Question;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,15 +9,15 @@ import java.util.Scanner;
 public class TriviaGame {
     // all data connected to the actual game: T
     // nothing to do with the user who is currently playing: T
-    private static Question[] questions;
+    private static Unit6.TriviaGame.Question[] questions;
     private int points;
     private int correctQuestions;
     private int questionsPlayed;
     private int streak;
 
 
-    public TriviaGame(Question[] questions) {
-        Question[] shuffledQuestions = new Question[questions.length]; // randomizes order of questions in constructor (no method)
+    public TriviaGame(Unit6.TriviaGame.Question[] questions) {
+        Unit6.TriviaGame.Question[] shuffledQuestions = new Unit6.TriviaGame.Question[questions.length]; // randomizes order of questions in constructor (no method)
         int index = (int)(Math.random() * shuffledQuestions.length);
         for (int i = 0; i < shuffledQuestions.length; i++){
             while (shuffledQuestions[index] != null){
@@ -31,7 +33,7 @@ public class TriviaGame {
     }
 
     // method to read the text file
-    public static Question[] readFile(String pathname) throws FileNotFoundException {
+    public static Unit6.TriviaGame.Question[] readFile(String pathname) throws FileNotFoundException {
         // create file var
         // create Scanner var from the File var
         // user a loop to read in ALL question data and fill array
@@ -40,7 +42,7 @@ public class TriviaGame {
         int questionNums = inf.nextInt();
         inf.nextLine();
 
-        Question[] allQuestions = new Question[questionNums];
+        Unit6.TriviaGame.Question[] allQuestions = new Unit6.TriviaGame.Question[questionNums];
         while (inf.hasNextLine()) {
 
 
@@ -57,7 +59,7 @@ public class TriviaGame {
                     inf.nextLine();
                 }
 
-                Question q = new Question(question, answerChoiceOne, answerChoiceTwo, answerChoiceThree, answerChoiceFour, answer, points);
+                Unit6.TriviaGame.Question q = new Unit6.TriviaGame.Question(question, answerChoiceOne, answerChoiceTwo, answerChoiceThree, answerChoiceFour, answer, points);
                 allQuestions[i] = q;
             }
         }
@@ -66,7 +68,7 @@ public class TriviaGame {
     }
 
 
-    public Question[] getQuestions() {
+    public Unit6.TriviaGame.Question[] getQuestions() {
         return questions;
     }
 
