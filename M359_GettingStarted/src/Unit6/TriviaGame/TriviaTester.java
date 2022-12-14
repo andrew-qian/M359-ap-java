@@ -29,6 +29,11 @@ public class TriviaTester {
 
     }
 
+    /**
+     * Introduction text for the trivia game
+     * @param userInput Name of user
+     * @return Introduction text that welcomes the user
+     */
     public static String introText(Scanner userInput){
         String str = "Welcome to NFL Trivia!";
         str += "\nWhat is your name? ";
@@ -38,6 +43,15 @@ public class TriviaTester {
 
     }
 
+    /**
+     * Prompts user for an answer from a single question
+     * @param n User answer
+     * @param allQuestions The array of all questions
+     * @param index The index of the question being chosen
+     * @param game Contains # of points, current streak, and total questions answered
+     * @return Returns if user was right or wrong, how many points earned. Also, it returns the
+     * current streak and total points.
+     */
     public static String singleQuestion(Scanner n, Question[] allQuestions, int index, TriviaGame game){
         Question q = allQuestions[index];
         String str;
@@ -63,6 +77,10 @@ public class TriviaTester {
         return str;
     }
 
+    /**
+     * Prints out a final log including final score, # of correct answers, and % of correct answer
+     * @param game contains data for the game (final score, correct answers, total questions asked)
+     */
     public static void endLog(TriviaGame game){
         double percentCorrect = (double)game.getCorrectQuestions()/game.getQuestionsPlayed()*100;
         percentCorrect = percentCorrect * Math.pow(10, 2);
@@ -76,6 +94,15 @@ public class TriviaTester {
         System.out.println(str);
         System.exit(0);
     }
+
+    /**
+     * User decides whether to continue; if yes, another question is displayed; if no, end log is shown
+     * and game terminates
+     * @param userInput Yes or no to whether user wants to continue
+     * @param game contains data for the game (final score, correct answers, total questions asked)
+     *             if user wants to quit
+     * @return returns text
+     */
     public static String continueGame(Scanner userInput, TriviaGame game){
         String str = "";
         System.out.println("Continue game? (y/n)");
