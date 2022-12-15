@@ -101,7 +101,7 @@ public class TriviaTester {
      * @param userInput Yes or no to whether user wants to continue
      * @param game contains data for the game (final score, correct answers, total questions asked)
      *             if user wants to quit
-     * @return returns text
+     * @return If user wants to continue game, gives another question, else, answer log
      */
     public static String continueGame(Scanner userInput, TriviaGame game){
         String str = "";
@@ -126,6 +126,12 @@ public class TriviaTester {
         return null;
     }
 
+    /**
+     * If answer was correct
+     * @param q question that user answered
+     * @param userAnswer Answer user picked
+     * @return True or false answer was correct
+     */
     public static boolean checkAnswer(Question q, String userAnswer){
         return q.getAnswer().equalsIgnoreCase(userAnswer);
     }

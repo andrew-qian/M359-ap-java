@@ -30,6 +30,12 @@ public class TriviaGame {
         questionsPlayed = 0;
     }
 
+    /**
+     * Reads text file in
+     * @param pathname Pathname of file
+     * @return question array with all questions in text file
+     * @throws FileNotFoundException
+     */
     // method to read the text file
     public static Question[] readFile(String pathname) throws FileNotFoundException {
         // create file var
