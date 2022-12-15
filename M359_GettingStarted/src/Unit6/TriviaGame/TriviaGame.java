@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class TriviaGame {
     // all data connected to the actual game: T
     // nothing to do with the user who is currently playing: T
-    private static Question[] questions;
+    private Question[] questions;
     private int points;
     private int correctQuestions;
     private int questionsPlayed;
@@ -23,7 +23,7 @@ public class TriviaGame {
             }
             shuffledQuestions[index] = questions[i];
         }
-        TriviaGame.questions = shuffledQuestions;
+        this.questions = shuffledQuestions;
         points = 0;
         streak = 0;
         correctQuestions = 0;
