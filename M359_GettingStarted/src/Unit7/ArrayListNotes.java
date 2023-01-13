@@ -23,5 +23,9 @@ public class ArrayListNotes {
         System.out.println(names);
         names.add(names.remove(2));
         System.out.println(names);
+        names.set(3, "Mrs. Denna");
+        System.out.println(names);
+        names.add(names.remove(2));
+        System.out.println(names);
     }
 }
