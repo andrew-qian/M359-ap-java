@@ -6,6 +6,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TicketMaster {
+    private ArrayList<Show> allShows;
+
+    public TicketMaster(ArrayList<Show> allShows) {
+        this.allShows = allShows;
+    }
+
+    public String toString(){
+        String str = "Date\t\tPrice\t\tQty\t\tPerformer\t\tCity";
+        str += "\n---------------------------------------------------\n";
+        for (Show show: allShows){
+            str += show;
+        }
+        return str;
+    }
+
+
     public static ArrayList<Show> readFile(String pathname) throws FileNotFoundException{
         File file = new File(pathname);
         Scanner inf = new Scanner(file);
