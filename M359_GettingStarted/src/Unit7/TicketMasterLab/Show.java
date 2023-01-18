@@ -18,7 +18,10 @@ public class Show {
         str += date + "\t";
         str += "$" + price + "\t\t";
         str += qty + "\t\t";
-        str += performer + "\t\t";
+        str += performer;
+        for (int i = performer.length(); i < 25; i++){
+            str += " ";
+        }
         str += city + "\n";
         return str;
     }

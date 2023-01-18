@@ -13,8 +13,8 @@ public class TicketMaster {
     }
 
     public String toString(){
-        String str = "Date\t\tPrice\t\tQty\t\tPerformer\t\tCity";
-        str += "\n---------------------------------------------------\n";
+        String str = "Date\t\tPrice\t\tQty\t\t Performer\t\t\t\t City";
+        str += "\n-------------------------------------------------------------\n";
         for (Show show: allShows){
             str += show;
         }
@@ -22,17 +22,37 @@ public class TicketMaster {
     }
 
 
-    public static ArrayList<Show> readFile(String pathname) throws FileNotFoundException{
-        File file = new File(pathname);
-        Scanner inf = new Scanner(file);
+    public static ArrayList<Show> readFile(String pathname){
+        Scanner inf = null;
+        File file;
+        try{
+            file = new File(pathname);
+            inf = new Scanner(file);
+        } catch (FileNotFoundException e){
+            System.out.println("FILE NOT FOUND");
+            System.exit(0);
+        }
 
         ArrayList<Show> allShows = new ArrayList<>();
 
         while (inf.hasNextLine()){
-            String date = inf.next();
-            double price = inf.nextDouble();
-            int qty = inf.nextInt();
-            String commaPart = inf.nextLine();
+            String date = null;
+            double price = 0;
+            int qty = 0;
+            String commaPart = null;
+
+
+            try{
+                date = inf.next();
+                price = inf.nextDouble();
+                qty = inf.nextInt();
+                commaPart = inf.nextLine();
+            }
+            catch (Exception e){
+                System.out.println("ERROR: DATA");
+                System.exit(0);
+            }
+
             String performer = "";
             String city = "";
 
@@ -43,13 +63,9 @@ public class TicketMaster {
                 }
             }
 
-            if (inf.hasNextLine()){
-                inf.nextLine();
-            }
-
             Show show = new Show(date, price, qty, performer, city);
             allShows.add(show);
-            // not reading full file
+
         }
         return allShows;
     }
