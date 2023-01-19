@@ -54,6 +54,24 @@ public class Notes_7_4_Examples {
         names.add("Adi");
         names.add("Noah");
 
+        System.out.print("numsNoRepeats: ");
+        System.out.println(numsNoRepeats);
+        System.out.println(findMin(numsNoRepeats));
+        System.out.println(findMax(numsNoRepeats));
+        System.out.println(findSum(numsNoRepeats));
+        System.out.println(findAverage(numsNoRepeats));
+
+        System.out.print("\nnumsRepeats: ");
+        System.out.println(numsRepeats);
+
+        System.out.print("\norderedNums: ");
+        System.out.println(orderedNums);
+
+        System.out.print("\nnames: ");
+        System.out.println(names);
+        System.out.println(revArrayList(names));
+        shiftLeft(names);
+        System.out.println(names);
     }
 
     /**
@@ -118,6 +136,7 @@ public class Notes_7_4_Examples {
             if (list.get(i) >= list.get(i+1)){
                 return false;
             }
+            // DON'T RETURN FALSE
         }
         return true;
     }
@@ -129,8 +148,8 @@ public class Notes_7_4_Examples {
      * @return true if any values are repeated, false otherwise
      */
     public static boolean hasDuplicates(ArrayList<String> list) {
-        for (int i = 0; i < list.size(); i++){
-            for (int j = 0; j < list.size(); j++){
+        for (int i = 0; i < list.size()-1; i++){
+            for (int j = i+1; j < list.size(); j++){
                 if (list.get(i).equals(list.get(j))){
                     return true;
                 }
@@ -146,6 +165,9 @@ public class Notes_7_4_Examples {
      * @return new ArrayList of Strings in reverse order
      */
     public static ArrayList<String> revArrayList(ArrayList<String> list) {
+        // create and instantiate a new AL
+        // use a loop to fill it
+        // return the AL
         ArrayList<String> output = new ArrayList<>();
         for (int i = list.size()-1; i >= 0; i--){
             output.add(list.get(i));
@@ -162,6 +184,5 @@ public class Notes_7_4_Examples {
         String removedString = list.remove(0);
         list.add(removedString);
     }
-
 
 }

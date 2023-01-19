@@ -41,7 +41,6 @@ public class TicketMaster {
             int qty = 0;
             String commaPart = null;
 
-
             try{
                 date = inf.next();
                 price = inf.nextDouble();
