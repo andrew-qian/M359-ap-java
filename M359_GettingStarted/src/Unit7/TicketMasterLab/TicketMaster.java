@@ -21,6 +21,24 @@ public class TicketMaster {
         return str;
     }
 
+    public void choiceMenu(Scanner s){
+        System.out.println("Input: ");
+        int userInput = -1;
+
+        try{
+            userInput = s.nextInt();
+
+        } catch (Exception e){
+            choiceMenu(s);
+        }
+        if (userInput <= 6 && userInput >= 1){
+            
+        }
+        else{
+            choiceMenu(s);
+        }
+    }
+
 
     public static ArrayList<Show> readFile(String pathname){
         Scanner inf = null;
