@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TicketMaster {
-    private ArrayList<Show> allShows;
+    private static ArrayList<Show> allShows;
 
     public TicketMaster(ArrayList<Show> allShows) {
         this.allShows = allShows;
@@ -21,21 +21,68 @@ public class TicketMaster {
         return str;
     }
 
-    public void choiceMenu(Scanner s){
+    public static void choiceMenu(Scanner s){
         System.out.println("Input: ");
         int userInput = -1;
+        System.out.println("1: Sort A-Z");
+        System.out.println("2: Sort Z-A");
+        System.out.println("3: Sort low-high (ticket price)");
+        System.out.println("4: Sort high-low (ticket price)");
+        System.out.println("5: Search by city");
+        System.out.println("6: Quit");
 
         try{
             userInput = s.nextInt();
 
         } catch (Exception e){
+            System.out.println("TYPE ERROR");
+            s.nextLine();
+            choiceMenu(s);
+
+
+
+        }
+        while (userInput > 6 && userInput < 1){
             choiceMenu(s);
         }
-        if (userInput <= 6 && userInput >= 1){
-            
+        if (userInput == 5){
+            optionFive(s);
+            choiceMenu(s);
+        }
+        else if (userInput == 6){
+            System.out.println("Thank you for using TicketMaster!");
+            System.exit(0);
+        }
+
+
+    }
+
+    public static void optionFive(Scanner s){
+        System.out.println("What city?");
+        String userInput = null;
+        try{
+            userInput = s.next();
+        } catch (Exception e){
+            System.out.println("TYPE ERROR");
+            optionFive(s);
+        }
+        searchCity(userInput);
+
+    }
+
+    public static void searchCity(String userInput){
+        ArrayList<Show> showInCity = new ArrayList<>();
+        for (Show show: allShows){
+            if (show.getCity().equalsIgnoreCase(userInput)){
+                showInCity.add(show);
+            }
+        }
+        if (showInCity.size() == 0){
+            System.out.println("City not found!");
         }
         else{
-            choiceMenu(s);
+            TicketMaster citySort = new TicketMaster(showInCity);
+            System.out.println(citySort);
         }
     }
 
