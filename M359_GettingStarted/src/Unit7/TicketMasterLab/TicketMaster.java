@@ -33,14 +33,13 @@ public class TicketMaster {
 
         try{
             userInput = s.nextInt();
-
         } catch (Exception e){
             System.out.println("TYPE ERROR");
             s.nextLine();
             choiceMenu(s);
-
         }
-        while (userInput > 6 && userInput < 1){
+        while (userInput > 6 || userInput < 1){
+            System.out.println("Out of range.");
             choiceMenu(s);
         }
         if (userInput == 5){
@@ -51,8 +50,6 @@ public class TicketMaster {
             System.out.println("Thank you for using TicketMaster!");
             System.exit(0);
         }
-
-
     }
 
     public static void optionFive(Scanner s){
@@ -130,5 +127,13 @@ public class TicketMaster {
 
         }
         return allShows;
+    }
+
+    public static ArrayList<Show> getAllShows() {
+        return allShows;
+    }
+
+    public static void setAllShows(ArrayList<Show> allShows) {
+        TicketMaster.allShows = allShows;
     }
 }
