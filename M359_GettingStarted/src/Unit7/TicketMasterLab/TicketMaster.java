@@ -39,8 +39,6 @@ public class TicketMaster {
             s.nextLine();
             choiceMenu(s);
 
-
-
         }
         while (userInput > 6 && userInput < 1){
             choiceMenu(s);
