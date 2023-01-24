@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TicketMaster {
+    private static final int SORT_AZ = 1;
+    private static final int SORT_ZA = 2;
+    private static final int SORT_LH = 3;
+    private static final int SORT_HL = 4;
+    private static final int SEARCH_CITY = 5;
+    private static final int QUIT = 6;
     private static ArrayList<Show> allShows;
 
     public TicketMaster(ArrayList<Show> allShows) {
@@ -33,6 +39,7 @@ public class TicketMaster {
 
         try{
             userInput = s.nextInt();
+            s.nextLine();
         } catch (Exception e){
             System.out.println("TYPE ERROR");
             s.nextLine();
@@ -42,27 +49,55 @@ public class TicketMaster {
             System.out.println("Out of range.");
             choiceMenu(s);
         }
-        if (userInput == 5){
-            optionFive(s);
-            choiceMenu(s);
+        if (userInput == SORT_AZ){
+            System.out.println("Option one.");
+            optionOne(s);
         }
-        else if (userInput == 6){
+        else if (userInput == SORT_ZA){
+            System.out.println("Option two.");
+            optionTwo(s);
+        }
+        else if (userInput == SORT_LH){
+            System.out.println("Option three.");
+            optionThree(s);
+        }
+        else if (userInput == SORT_HL){
+            System.out.println("Option four.");
+            optionFour(s);
+        }
+        else if (userInput == SEARCH_CITY){
+            optionFive(s);
+
+        }
+        else if (userInput == QUIT){
             System.out.println("Thank you for using TicketMaster!");
             System.exit(0);
         }
+    }
+    public static void optionOne(Scanner s){
+        choiceMenu(s);
+    }
+    public static void optionTwo(Scanner s){
+        choiceMenu(s);
+    }
+    public static void optionThree(Scanner s){
+        choiceMenu(s);
+    }
+    public static void optionFour(Scanner s){
+        choiceMenu(s);
     }
 
     public static void optionFive(Scanner s){
         System.out.println("What city?");
         String userInput = null;
         try{
-            userInput = s.next();
+            userInput = s.nextLine();
         } catch (Exception e){
             System.out.println("TYPE ERROR");
             optionFive(s);
         }
         searchCity(userInput);
-
+        choiceMenu(s);
     }
 
     public static void searchCity(String userInput){

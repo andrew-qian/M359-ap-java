@@ -6,15 +6,12 @@ import java.util.ArrayList;
 
 public class Store {
     // declare an instance variable of an ArrayList of type Item called myItems
-    ArrayList<Item> myItems = new ArrayList<>();
-
+    private ArrayList<Item> myItems;
 
 
     public Store() {
         // instantiate the ArrayList myItems
-        public Store(ArrayList<Item> myItems) {
-            this.myItems = myItems;
-        }
+        this.myItems = new ArrayList<>();
     }
 
     /**
@@ -33,7 +30,15 @@ public class Store {
      */
 
     public boolean updateStock(Item newItem) {
-        for (int i = 0; i < )
+
+        for (Item myItem : myItems) {
+            if (myItem.equals(newItem)) {
+                myItem.setQuantity(myItem.getQuantity() + newItem.getQuantity());
+                return false;
+            }
+        }
+        myItems.add(newItem);
+        return true;
     }
 
     /**
@@ -42,7 +47,11 @@ public class Store {
      */
 
     public String toString() {
-
+        String result = "";
+        for (int i = 0; i < myItems.size(); i++){
+            result += myItems.get(i).toString();
+        }
+        return result;
 
     }
 

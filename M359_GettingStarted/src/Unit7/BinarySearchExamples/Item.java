@@ -25,7 +25,7 @@ public class Item {
      * Where 10 represents the quantity
      */
     public String toString() {
-        return name + ", $" + cost + ", " + quantity;
+        return name + ", $" + cost + ", " + quantity + "\n";
     }
 
 
