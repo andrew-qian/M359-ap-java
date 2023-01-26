@@ -77,6 +77,18 @@ public class TicketMaster {
     public static void optionOne(Scanner s){
         choiceMenu(s);
     }
+
+    public static String sortByPerformer(){
+        for (int i = 0; i < allShows.size()-1; i++){
+            int minIndex = i;
+            for (int j = i+1; j < allShows.size(); j++){
+                if (allShows.get(i).getPerformer().compareTo(allShows.get(j).getPerformer()) > 0){
+                    minIndex = j;
+                }
+            }
+
+        }
+    }
     public static void optionTwo(Scanner s){
         choiceMenu(s);
     }
