@@ -50,11 +50,9 @@ public class TicketMaster {
             choiceMenu(s);
         }
         if (userInput == SORT_AZ){
-            System.out.println("Option one.");
             optionOne(s);
         }
         else if (userInput == SORT_ZA){
-            System.out.println("Option two.");
             optionTwo(s);
         }
         else if (userInput == SORT_LH){
@@ -75,22 +73,44 @@ public class TicketMaster {
         }
     }
     public static void optionOne(Scanner s){
+        sortByPerformer(true);
+        TicketMaster AZ = new TicketMaster(allShows);
+        System.out.println(AZ);
         choiceMenu(s);
     }
 
-    public static String sortByPerformer(){
-        for (int i = 0; i < allShows.size()-1; i++){
-            int minIndex = i;
-            for (int j = i+1; j < allShows.size(); j++){
-                if (allShows.get(i).getPerformer().compareTo(allShows.get(j).getPerformer()) > 0){
-                    minIndex = j;
-                }
-            }
 
-        }
-    }
     public static void optionTwo(Scanner s){
+        sortByPerformer(false);
+        TicketMaster ZA = new TicketMaster(allShows);
+        System.out.println(ZA);
         choiceMenu(s);
+    }
+
+    public static void sortByPerformer(Boolean AZ){
+        for (int i = 0; i < allShows.size() - 1; i++){
+            int min = i;
+            for (int j = i+1; j < allShows.size(); j++){
+                // we are checking remaining values to see if they are smaller
+                // than the value located at index min
+                if (AZ){
+                    if (allShows.get(j).getPerformer().compareTo(allShows.get(min).getPerformer()) < 0){
+                        min = j;
+                    }
+                }
+                else{
+                    if (allShows.get(j).getPerformer().compareTo(allShows.get(min).getPerformer()) > 0){
+                        min = j;
+                    }
+                }
+
+            }
+            // I know that min has the index of the smallest value
+            // swap the values from index i and index min
+            Show temp = allShows.get(min);
+            allShows.set(min, allShows.get(i));
+            allShows.set(i, temp);
+        }
     }
     public static void optionThree(Scanner s){
         choiceMenu(s);
