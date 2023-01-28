@@ -26,19 +26,21 @@ public class TicketMaster {
     }
 
 
-    public static void optionOne(Scanner s){
+    public static void optionOne(Scanner s, TicketMaster obj){
+        ArrayList<Show> backup = allShows;
         sortByPerformer(true);
-        TicketMaster AZ = new TicketMaster(allShows);
-        System.out.println(AZ);
-        TicketMasterDriver.choiceMenu(s);
+        System.out.println(obj);
+        obj.setAllShows(backup);
+        TicketMasterDriver.choiceMenu(s, obj);
     }
 
 
-    public static void optionTwo(Scanner s){
+    public static void optionTwo(Scanner s, TicketMaster obj){
+        ArrayList<Show> backup = allShows;
         sortByPerformer(false);
-        TicketMaster ZA = new TicketMaster(allShows);
-        System.out.println(ZA);
-        TicketMasterDriver.choiceMenu(s);
+        System.out.println(obj);
+        obj.setAllShows(backup);
+        TicketMasterDriver.choiceMenu(s, obj);
     }
 
     public static void sortByPerformer(Boolean AZ){
@@ -66,27 +68,27 @@ public class TicketMaster {
             allShows.set(i, temp);
         }
     }
-    public static void optionThree(Scanner s){
-        TicketMasterDriver.choiceMenu(s);
+    public static void optionThree(Scanner s, TicketMaster obj){
+        TicketMasterDriver.choiceMenu(s, obj);
     }
-    public static void optionFour(Scanner s){
-        TicketMasterDriver.choiceMenu(s);
+    public static void optionFour(Scanner s, TicketMaster obj){
+        TicketMasterDriver.choiceMenu(s, obj);
     }
 
-    public static void optionFive(Scanner s){
+    public static void optionFive(Scanner s, TicketMaster obj){
         System.out.println("What city?");
         String userInput = null;
         try{
             userInput = s.nextLine();
         } catch (Exception e){
             System.out.println("TYPE ERROR");
-            optionFive(s);
+            optionFive(s, obj);
         }
-        searchCity(userInput);
-        TicketMasterDriver.choiceMenu(s);
+        searchCity(userInput, obj);
+        TicketMasterDriver.choiceMenu(s, obj);
     }
 
-    public static void searchCity(String userInput){
+    public static void searchCity(String userInput, TicketMaster obj){
         ArrayList<Show> backup = allShows;
         ArrayList<Show> showInCity = new ArrayList<>();
         for (Show show: allShows){
@@ -98,9 +100,9 @@ public class TicketMaster {
             System.out.println("City not found!");
         }
         else{
-            TicketMaster citySort = new TicketMaster(showInCity);
-            System.out.println(citySort);
-            TicketMaster backupObj = new TicketMaster(backup);
+            obj.setAllShows(showInCity);
+            System.out.println(obj);
+            obj.setAllShows(backup);
         }
     }
 

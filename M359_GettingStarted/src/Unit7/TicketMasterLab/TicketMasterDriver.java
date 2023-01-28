@@ -13,10 +13,10 @@ public class TicketMasterDriver {
     public static void main(String[] args){
         Scanner s = new Scanner(System.in);
         TicketMaster allShows = new TicketMaster(TicketMaster.readFile("showData.txt"));
-        choiceMenu(s);
+        choiceMenu(s, allShows);
     }
 
-    public static void choiceMenu(Scanner s){
+    public static void choiceMenu(Scanner s, TicketMaster obj){
         System.out.println("Input: ");
         int userInput = -1;
         System.out.println("1: Sort A-Z");
@@ -32,28 +32,28 @@ public class TicketMasterDriver {
         } catch (Exception e){
             System.out.println("TYPE ERROR");
             s.nextLine();
-            choiceMenu(s);
+            choiceMenu(s, obj);
         }
         while (userInput > 6 || userInput < 1){
             System.out.println("Out of range.");
-            choiceMenu(s);
+            choiceMenu(s, obj);
         }
         if (userInput == SORT_AZ){
-            TicketMaster.optionOne(s);
+            TicketMaster.optionOne(s, obj);
         }
         else if (userInput == SORT_ZA){
-            TicketMaster.optionTwo(s);
+            TicketMaster.optionTwo(s, obj);
         }
         else if (userInput == SORT_LH){
             System.out.println("Option three.");
-            TicketMaster.optionThree(s);
+            TicketMaster.optionThree(s, obj);
         }
         else if (userInput == SORT_HL){
             System.out.println("Option four.");
-            TicketMaster.optionFour(s);
+            TicketMaster.optionFour(s, obj);
         }
         else if (userInput == SEARCH_CITY){
-            TicketMaster.optionFive(s);
+            TicketMaster.optionFive(s, obj);
 
         }
         else if (userInput == QUIT){
