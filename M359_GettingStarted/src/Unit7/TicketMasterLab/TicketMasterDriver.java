@@ -54,7 +54,6 @@ public class TicketMasterDriver {
         }
         else if (userInput == SEARCH_CITY){
             TicketMaster.optionFive(s, obj);
-
         }
         else if (userInput == QUIT){
             System.out.println("Thank you for using TicketMaster!");

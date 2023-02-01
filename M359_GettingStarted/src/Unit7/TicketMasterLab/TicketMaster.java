@@ -69,10 +69,43 @@ public class TicketMaster {
         }
     }
     public static void optionThree(Scanner s, TicketMaster obj){
+        ArrayList<Show> backup = allShows;
+        searchPrice(true);
+        System.out.println(obj);
+        obj.setAllShows(backup);
         TicketMasterDriver.choiceMenu(s, obj);
     }
     public static void optionFour(Scanner s, TicketMaster obj){
+        ArrayList<Show> backup = allShows;
+        searchPrice(false);
+        System.out.println(obj);
+        obj.setAllShows(backup);
         TicketMasterDriver.choiceMenu(s, obj);
+    }
+
+    public static void searchPrice(boolean lowHigh){
+        for (int i = 1; i < allShows.size(); i++){
+            Show valueToInsert = allShows.get(i);
+            int currentPos = i;
+            if (lowHigh){
+                while (currentPos > 0 && allShows.get(currentPos-1).getPrice() > valueToInsert.getPrice()){
+                    // shift value at position - 1 over to position
+
+                    allShows.set(currentPos, allShows.get(currentPos-1));
+                    currentPos--;
+                }
+            }
+            else{
+                while (currentPos > 0 && allShows.get(currentPos-1).getPrice() < valueToInsert.getPrice()){
+                    // shift value at position - 1 over to position
+
+                    allShows.set(currentPos, allShows.get(currentPos-1));
+                    currentPos--;
+                }
+            }
+
+            allShows.set(currentPos, valueToInsert);
+        }
     }
 
     public static void optionFive(Scanner s, TicketMaster obj){
