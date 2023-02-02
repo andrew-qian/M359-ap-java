@@ -25,6 +25,11 @@ public class TicketMaster {
         return str;
     }
 
+    /**
+     * If user input = 1, then sorts performers by A-Z
+     * @param s Scanner for user input
+     * @param obj Contains allShows array
+     */
 
     public static void optionOne(Scanner s, TicketMaster obj){
         ArrayList<Show> backup = allShows;
@@ -34,6 +39,11 @@ public class TicketMaster {
         TicketMasterDriver.choiceMenu(s, obj);
     }
 
+    /**
+     * If user input = 2, then sorts performers by Z-A
+     * @param s Scanner for user input
+     * @param obj Contains allShows array
+     */
 
     public static void optionTwo(Scanner s, TicketMaster obj){
         ArrayList<Show> backup = allShows;
@@ -43,6 +53,10 @@ public class TicketMaster {
         TicketMasterDriver.choiceMenu(s, obj);
     }
 
+    /**
+     * sorts allShows A-Z is AZ = true or Z-A if AZ = false by selection sort
+     * @param AZ whether array is to be sorted A-Z or Z-A
+     */
     public static void sortByPerformer(Boolean AZ){
         for (int i = 0; i < allShows.size() - 1; i++){
             int min = i;
@@ -68,6 +82,12 @@ public class TicketMaster {
             allShows.set(i, temp);
         }
     }
+    /**
+     * If user input = 3, then sorts price by low-high
+     * @param s Scanner for user input
+     * @param obj Contains allShows array
+     */
+
     public static void optionThree(Scanner s, TicketMaster obj){
         ArrayList<Show> backup = allShows;
         searchPrice(true);
@@ -75,6 +95,11 @@ public class TicketMaster {
         obj.setAllShows(backup);
         TicketMasterDriver.choiceMenu(s, obj);
     }
+    /**
+     * If user input = 4, then sorts price by high-low
+     * @param s Scanner for user input
+     * @param obj Contains allShows array
+     */
     public static void optionFour(Scanner s, TicketMaster obj){
         ArrayList<Show> backup = allShows;
         searchPrice(false);
@@ -83,6 +108,10 @@ public class TicketMaster {
         TicketMasterDriver.choiceMenu(s, obj);
     }
 
+    /**
+     * Sorts allShows array by insertion sort by price
+     * @param lowHigh whether price is to be sorted low to high or high - low
+     */
     public static void searchPrice(boolean lowHigh){
         for (int i = 1; i < allShows.size(); i++){
             Show valueToInsert = allShows.get(i);
@@ -108,6 +137,11 @@ public class TicketMaster {
         }
     }
 
+    /**
+     * If user input = 5, then asks for a city to search for in allShows
+     * @param s Scanner for user input
+     * @param obj Contains allShows array
+     */
     public static void optionFive(Scanner s, TicketMaster obj){
         System.out.println("What city?");
         String userInput = null;
@@ -121,6 +155,11 @@ public class TicketMaster {
         TicketMasterDriver.choiceMenu(s, obj);
     }
 
+    /**
+     * Searches for city by linear search, returns message if not found
+     * @param userInput city to search for
+     * @param obj contains allShows array
+     */
     public static void searchCity(String userInput, TicketMaster obj){
         ArrayList<Show> backup = allShows;
         ArrayList<Show> showInCity = new ArrayList<>();
@@ -139,7 +178,11 @@ public class TicketMaster {
         }
     }
 
-
+    /**
+     * Reads file to add to arrayList
+     * @param pathname pathname for userFile
+     * @return arrayList with type Show
+     */
     public static ArrayList<Show> readFile(String pathname){
         Scanner inf = null;
         File file;

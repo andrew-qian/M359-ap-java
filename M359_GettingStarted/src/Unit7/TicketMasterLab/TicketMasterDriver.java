@@ -16,6 +16,11 @@ public class TicketMasterDriver {
         choiceMenu(s, allShows);
     }
 
+    /**
+     * Choice menu for user
+     * @param s takes in user input
+     * @param obj contains allShows
+     */
     public static void choiceMenu(Scanner s, TicketMaster obj){
         System.out.println("Input: ");
         int userInput = -1;
