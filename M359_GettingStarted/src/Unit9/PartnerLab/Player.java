@@ -1,43 +1,37 @@
 package Unit9.PartnerLab;
 
 public class Player {
-    private boolean isAllStar;
-    private int salary;
-    private String position;
+    private String name;
+    private double salary;
     private int speed;
     private int strength;
 
+    public Player(){
+        salary = 207000;
+        speed = 50;
+        strength = 50;
+    }
 
-    public Player(boolean isAllStar, int salary, String position, int speed, int strength) {
-        this.isAllStar = isAllStar;
+    public Player(String name, double salary, int speed, int strength) {
+        this.name = name;
         this.salary = salary;
-        this.position = position;
         this.speed = speed;
         this.strength = strength;
     }
 
-    public boolean isAllStar() {
-        return isAllStar;
+    public String toString(){
+        String output = "";
+        output += "The player is named: " + name + "\n";
+        output += "He is paid: $" + salary + " and has " + speed + " speed and " + strength + " strength.";
+        return output;
     }
 
-    public void setAllStar(boolean allStar) {
-        isAllStar = allStar;
+    public String getName() {
+        return name;
     }
 
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getSpeed() {
@@ -54,5 +48,13 @@ public class Player {
 
     public void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
     }
 }
