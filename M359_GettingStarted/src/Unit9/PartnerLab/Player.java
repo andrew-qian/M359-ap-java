@@ -7,6 +7,7 @@ public class Player {
     private int strength;
 
     public Player(){
+        name = "Default Player";
         salary = 207000;
         speed = 50;
         strength = 50;

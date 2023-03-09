@@ -15,6 +15,12 @@ public class Edge extends Player{
         finesseMoves = 50;
     }
 
+    public String toString(){
+        String str = super.toString();
+        str += "This Edge has a block shedding rating of " + blockShedding + " and a finesse move rating of " + finesseMoves;
+        return str;
+    }
+
     public int getBlockShedding() {
         return blockShedding;
     }

@@ -15,6 +15,12 @@ public class Cornerback extends Player {
         zoneDefense = 50;
     }
 
+    public String toString(){
+        String str = super.toString();
+        str += "This Cornerback has a man defense rating of " + manDefense + " and a zoneDefense rating of " + zoneDefense;
+        return str;
+    }
+
     public int getManDefense() {
         return manDefense;
     }

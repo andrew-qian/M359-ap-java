@@ -10,6 +10,16 @@ public class Cow extends Animal
         this.cowType = cowType;
     }
 
+    public void milkCow(){
+        if (cowType.equals("Dairy")){
+            System.out.println("Milked.");
+        }
+
+        else{
+            System.out.println("You can't milk a beef cow.");
+        }
+    }
+
     /**
      * Makes a sound for a cow
      * 

@@ -24,6 +24,25 @@ public class AnimalTester
        barn[4] = new Animal("Maggie");
        barn[5] = new Pig("Max", true);
 
+       Cow dairyCow = new Cow("Milk Cow", "Dairy");
+       Cow beefCow =  new Cow("Beef Cow", "Beef");
+       Animal someCow = new Cow("Random Cow", "Dairy");
+
+       dairyCow.milkCow();
+       beefCow.milkCow();
+//       someCow.milkCow(); //superclasses cannot access subclasses
+       // we can cast it as a cow then Java will let us call methods that are only defined for Cow objects
+       ((Cow)someCow).milkCow();
+       // must put the class we are casting it to in parentheses (Cow)
+       // We must fully wrap the ref var that is being casted in parentheses before the dot so java
+       // will think of it as a cow
+       //someCow is still an animal reference
+
+       Cow newCow = (Cow)someCow;
+
+       newCow.milkCow();
+
+
        // 2. Did I ONLY store Animal objects in this array?  If not, why do you
        //    think this was allowed?
 
