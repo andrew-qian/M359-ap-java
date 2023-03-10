@@ -17,9 +17,16 @@ public class Quarterback extends Player{
 
     public String toString(){
         String str = super.toString();
-        str += "This Quarterback has a throwing accuracy of " + throwingAccuracy + " and a throwing strength of " + throwingStrength;
+        str += "This Quarterback has a throwing accuracy of " + throwingAccuracy + " and a throwing strength of " + throwingStrength + ".";
         return str;
     }
+
+    public void compare(Quarterback player){
+        super.compare(player);
+        System.out.println("Throw Accuracy:   " + throwingAccuracy + " | " + player.throwingAccuracy);
+        System.out.println("Throw Strength:   " + throwingStrength + " | " + player.throwingStrength);
+    }
+    //50 million
 
     public int getThrowingAccuracy() {
         return throwingAccuracy;

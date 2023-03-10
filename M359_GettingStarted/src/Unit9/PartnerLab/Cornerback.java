@@ -17,9 +17,16 @@ public class Cornerback extends Player {
 
     public String toString(){
         String str = super.toString();
-        str += "This Cornerback has a man defense rating of " + manDefense + " and a zoneDefense rating of " + zoneDefense;
+        str += "This Cornerback has a man defense rating of " + manDefense + " and a zoneDefense rating of " + zoneDefense + ".";
         return str;
     }
+
+    public void compare(Cornerback player){
+        super.compare(player);
+        System.out.println("Man Defense:      " + manDefense + " | " + player.manDefense);
+        System.out.println("Zone Defense:     " + zoneDefense + " | " + player.zoneDefense);
+    }
+    //21 million
 
     public int getManDefense() {
         return manDefense;

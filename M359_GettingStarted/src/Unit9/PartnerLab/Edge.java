@@ -17,9 +17,15 @@ public class Edge extends Player{
 
     public String toString(){
         String str = super.toString();
-        str += "This Edge has a block shedding rating of " + blockShedding + " and a finesse move rating of " + finesseMoves;
+        str += "This Edge has a block shedding rating of " + blockShedding + " and a finesse move rating of " + finesseMoves+".";
         return str;
     }
+    public void compare(Edge player){
+        super.compare(player);
+        System.out.println("Block Shedding:   " + blockShedding + " | " + player.blockShedding);
+        System.out.println("Finesse Moves:    " + finesseMoves + " | " + player.finesseMoves);
+    }
+    //25 million
 
     public int getBlockShedding() {
         return blockShedding;

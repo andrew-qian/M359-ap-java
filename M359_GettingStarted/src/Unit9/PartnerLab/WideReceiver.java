@@ -17,9 +17,22 @@ public class WideReceiver extends Player {
 
     public String toString(){
         String str = super.toString();
-        str += "This Wide Receiver route running attribute is at " + routeRunning + " and a catching attribute of  " + catching;
+        str += "This Wide Receiver's route running attribute is at " + routeRunning + " and a catching attribute of  " + catching + ".";
         return str;
     }
+
+    public void compare(WideReceiver player){
+        super.compare(player);
+        System.out.println("Route Running:    " + routeRunning + " | " + player.routeRunning);
+        System.out.println("Catching:         " + catching + " | " + player.catching);
+    }
+
+    // 30 million
+    //public void contractValue(WideReceiver player){
+        //if ((routeRunning) > 75) == 20){
+
+      //  }
+  // }
 
     public int getRouteRunning() {
         return routeRunning;

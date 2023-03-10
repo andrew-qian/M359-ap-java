@@ -23,9 +23,21 @@ public class Player {
     public String toString(){
         String output = "";
         output += "The player is named: " + name + "\n";
-        output += "He is paid: $" + salary + " and has " + speed + " speed and " + strength + " strength.";
+        output += "He is paid: $" + salary + " and has " + speed + " speed and " + strength + " strength.\n";
         return output;
     }
+
+    public void compare(Player player){
+        System.out.println("Comparing " + name + " and " + player.name);
+        System.out.println("-------------------------------");
+        System.out.println("Speed:            " + speed + " | " + player.speed);
+        System.out.println("Strength:         " + strength + " | " + player.strength);
+    }
+
+//    public String spaceFormat(){
+//
+//    }
+
 
     public String getName() {
         return name;
