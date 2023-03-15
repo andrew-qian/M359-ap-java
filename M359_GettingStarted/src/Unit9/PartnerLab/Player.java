@@ -2,20 +2,17 @@ package Unit9.PartnerLab;
 
 public class Player {
     private String name;
-    private double salary;
     private int speed;
     private int strength;
 
     public Player(){
         name = "Default Player";
-        salary = 207000;
         speed = 50;
         strength = 50;
     }
 
-    public Player(String name, double salary, int speed, int strength) {
+    public Player(String name, int speed, int strength) {
         this.name = name;
-        this.salary = salary;
         this.speed = speed;
         this.strength = strength;
     }
@@ -23,7 +20,7 @@ public class Player {
     public String toString(){
         String output = "";
         output += "The player is named: " + name + "\n";
-        output += "He is paid: $" + salary + " and has " + speed + " speed and " + strength + " strength.\n";
+        output += "He has " + speed + " speed and " + strength + " strength.\n";
         return output;
     }
 
@@ -34,9 +31,19 @@ public class Player {
         System.out.println("Strength:         " + strength + " | " + player.strength);
     }
 
-//    public String spaceFormat(){
-//
-//    }
+    public double contractValue(){
+        double average = (double)(speed + strength)/(75*2);
+        if ((average * 5 * 1.25) >= 8){
+            return 10;
+        }
+        else {
+            return (Math.floor((average * 5 * 1.25) * 100)/100);
+        }
+    }
+
+    public void printContract(){
+        System.out.println("The contract for this Player (" + name + ") is worth: " + contractValue() + " million dollars");
+    }
 
 
     public String getName() {
@@ -63,11 +70,4 @@ public class Player {
         this.strength = strength;
     }
 
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
 }

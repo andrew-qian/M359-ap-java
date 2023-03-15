@@ -4,8 +4,8 @@ public class Edge extends Player{
     private int blockShedding;
     private int finesseMoves;
 
-    public Edge(String name, double salary, int speed, int strength, int blockShedding, int finesseMoves){
-        super(name, salary, speed, strength);
+    public Edge(String name, int speed, int strength, int blockShedding, int finesseMoves){
+        super(name,speed, strength);
         this.finesseMoves = finesseMoves;
         this.blockShedding = blockShedding;
     }
@@ -26,6 +26,16 @@ public class Edge extends Player{
         System.out.println("Finesse Moves:    " + finesseMoves + " | " + player.finesseMoves);
     }
     //25 million
+    public double contractValue(){
+        double average = (double)(getSpeed() + getStrength() + finesseMoves + blockShedding)/(75*4);
+        if ((average * 12 * 1.25) == 20){
+            return 25;
+        }
+        return (Math.floor((average * 12 * 1.25) * 100)/100);
+    }
+    public void printContract(){
+        System.out.println("The contract for this Edge (" + getName() + ") is worth: " + contractValue() + " million dollars");
+    }
 
     public int getBlockShedding() {
         return blockShedding;

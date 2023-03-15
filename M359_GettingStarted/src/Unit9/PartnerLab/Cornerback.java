@@ -4,8 +4,8 @@ public class Cornerback extends Player {
     private int manDefense;
     private int zoneDefense;
 
-    public Cornerback(String name, double salary, int speed, int strength, int manDefense, int zoneDefense){
-        super(name, salary, speed, strength);
+    public Cornerback(String name,int speed, int strength, int manDefense, int zoneDefense){
+        super(name,speed, strength);
         this.manDefense = manDefense;
         this.zoneDefense = zoneDefense;
     }
@@ -27,6 +27,16 @@ public class Cornerback extends Player {
         System.out.println("Zone Defense:     " + zoneDefense + " | " + player.zoneDefense);
     }
     //21 million
+    public double contractValue(){
+        double average = (double)(getSpeed() + getStrength() + manDefense + zoneDefense)/(75*4);
+        if ((average * 10 * 1.25) >= 16){
+            return 21;
+        }
+        return (Math.floor((average * 10 * 1.25) * 100)/100);
+    }
+    public void printContract(){
+        System.out.println("The contract for this Cornerback (" + getName() + ") is worth: " + contractValue() + " million dollars");
+    }
 
     public int getManDefense() {
         return manDefense;

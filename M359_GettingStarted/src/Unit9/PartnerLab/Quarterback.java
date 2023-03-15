@@ -4,8 +4,8 @@ public class Quarterback extends Player{
     private int throwingAccuracy;
     private int throwingStrength;
 
-    public Quarterback(String name, double salary,int speed, int strength, int throwingAccuracy, int throwingStrength){
-        super(name, salary, speed, strength);
+    public Quarterback(String name,int speed, int strength, int throwingAccuracy, int throwingStrength){
+        super(name, speed, strength);
         this.throwingAccuracy = throwingAccuracy;
         this.throwingStrength = throwingStrength;
     }
@@ -27,6 +27,19 @@ public class Quarterback extends Player{
         System.out.println("Throw Strength:   " + throwingStrength + " | " + player.throwingStrength);
     }
     //50 million
+
+    public double contractValue(){
+        double average = (double)(getSpeed() + getStrength() + throwingStrength + throwingAccuracy)/(75*4);
+        if ((average * 30 * 1.25) == 50){
+            return 55;
+        }
+        else {
+            return (Math.floor((average * 30 * 1.25) * 100)/100);
+        }
+    }
+    public void printContract(){
+        System.out.println("The contract for this quarterback (" + getName() + ") is worth: " + contractValue() + " million dollars");
+    }
 
     public int getThrowingAccuracy() {
         return throwingAccuracy;
