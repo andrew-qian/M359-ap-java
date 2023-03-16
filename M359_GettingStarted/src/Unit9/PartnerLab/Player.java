@@ -36,9 +36,7 @@ public class Player {
         if ((average * 5 * 1.25) >= 8){
             return 10;
         }
-        else {
-            return (Math.floor((average * 5 * 1.25) * 100)/100);
-        }
+        return (Math.floor((average * 5 * 1.25) * 100)/100);
     }
 
     public void printContract(){

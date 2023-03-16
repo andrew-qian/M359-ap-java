@@ -27,14 +27,11 @@ public class WideReceiver extends Player {
         System.out.println("Catching:         " + catching + " | " + player.catching);
     }
     public double contractValue(){
-
         double average = (double)(getSpeed() + getStrength() + catching + routeRunning)/(75*4);
         if ((average * 15 * 1.25) == 25){
             return 30;
         }
-        else {
-            return (Math.floor((average * 15 * 1.25) * 100)/100);
-        }
+        return (Math.floor((average * 15 * 1.25) * 100)/100);
     }
     public void printContract(){
         System.out.println("The contract for this Wide Receiver (" + getName() + ") is worth: " + contractValue() + " million dollars");

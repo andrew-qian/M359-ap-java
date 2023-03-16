@@ -33,9 +33,7 @@ public class Quarterback extends Player{
         if ((average * 30 * 1.25) == 50){
             return 55;
         }
-        else {
-            return (Math.floor((average * 30 * 1.25) * 100)/100);
-        }
+        return (Math.floor((average * 30 * 1.25) * 100)/100);
     }
     public void printContract(){
         System.out.println("The contract for this quarterback (" + getName() + ") is worth: " + contractValue() + " million dollars");
