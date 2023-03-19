@@ -1,5 +1,7 @@
 package Unit9.PartnerLab;
-
+// Teacher: Denna Period 3
+// Students: Andrew Qian and Rithesh Balusu
+// Class: Subclass of the player class, this class depicts a wide receiver
 public class WideReceiver extends Player {
     private int routeRunning;
     private int catching;
@@ -17,15 +19,25 @@ public class WideReceiver extends Player {
 
     public String toString(){
         String str = super.toString();
-        str += "This Wide Receiver's route running attribute is at " + routeRunning + " and a catching attribute of  " + catching + ".";
+        str += "This Wide Receiver's route running attribute is at " + routeRunning +
+                " and a catching attribute of  " + catching + ".";
         return str;
     }
-
+    /**
+     * Compares wide receivers between each other
+     * @param player wide receiver comparing to
+     */
     public void compare(WideReceiver player){
         super.compare(player);
-        System.out.println("Route Running:    " + routeRunning + " | " + player.routeRunning);
-        System.out.println("Catching:         " + catching + " | " + player.catching);
+        System.out.println("Route Running:    " + routeRunning +
+                " | " + player.routeRunning);
+        System.out.println("Catching:         " + catching +
+                " | " + player.catching);
     }
+    /**
+     * Calculates contract value for wide receiver
+     * @return contract value for wide receiver
+     */
     public double contractValue(){
         double average = (double)(getSpeed() + getStrength() + catching + routeRunning)/(75*4);
         if ((average * 15 * 1.25) == 25){
@@ -33,8 +45,12 @@ public class WideReceiver extends Player {
         }
         return (Math.floor((average * 15 * 1.25) * 100)/100);
     }
+    /**
+     * prints the contract for the player
+     */
     public void printContract(){
-        System.out.println("The contract for this Wide Receiver (" + getName() + ") is worth: " + contractValue() + " million dollars");
+        System.out.println("The contract for this Wide Receiver " +
+                "(" + getName() + ") is worth: " + contractValue() + " million dollars");
     }
 
     // 30 million

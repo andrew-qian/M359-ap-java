@@ -1,5 +1,7 @@
 package Unit9.PartnerLab;
-
+// Teacher: Denna Period 3
+// Students: Andrew Qian and Rithesh Balusu
+// Class: Superclass of the football player lab
 public class Player {
     private String name;
     private int speed;
@@ -20,17 +22,26 @@ public class Player {
     public String toString(){
         String output = "";
         output += "The player is named: " + name + "\n";
-        output += "He has " + speed + " speed and " + strength + " strength.\n";
+        output += "He has " + speed + " speed " +
+                "and " + strength + " strength.";
         return output;
     }
-
+    /**
+     * Compares players between each other
+     * @param player player comparing to
+     */
     public void compare(Player player){
         System.out.println("Comparing " + name + " and " + player.name);
         System.out.println("-------------------------------");
-        System.out.println("Speed:            " + speed + " | " + player.speed);
-        System.out.println("Strength:         " + strength + " | " + player.strength);
+        System.out.println("Speed:            " + speed +
+                " | " + player.speed);
+        System.out.println("Strength:         " + strength +
+                " | " + player.strength);
     }
-
+    /**
+     * Calculates contract value for player
+     * @return contract value for player
+     */
     public double contractValue(){
         double average = (double)(speed + strength)/(75*2);
         if ((average * 5 * 1.25) >= 8){
@@ -39,8 +50,12 @@ public class Player {
         return (Math.floor((average * 5 * 1.25) * 100)/100);
     }
 
+    /**
+     * prints the contract for the player
+     */
     public void printContract(){
-        System.out.println("The contract for this Player (" + name + ") is worth: " + contractValue() + " million dollars");
+        System.out.println("The contract for this Player " +
+                "(" + name + ") is worth: " + contractValue() + " million dollars");
     }
 
 

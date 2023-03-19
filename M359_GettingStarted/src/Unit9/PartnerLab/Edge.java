@@ -1,5 +1,7 @@
 package Unit9.PartnerLab;
-
+// Teacher: Denna Period 3
+// Students: Andrew Qian and Rithesh Balusu
+// Class: Subclass of the player class, this class depicts a Edge
 public class Edge extends Player{
     private int blockShedding;
     private int finesseMoves;
@@ -17,15 +19,26 @@ public class Edge extends Player{
 
     public String toString(){
         String str = super.toString();
-        str += "This Edge has a block shedding rating of " + blockShedding + " and a finesse move rating of " + finesseMoves+".";
+        str += "This Edge has a block shedding rating of " + blockShedding
+                + " and a finesse move rating of " + finesseMoves + ".";
         return str;
     }
+    /**
+     * Compares edges between each other
+     * @param player edge comparing to
+     */
     public void compare(Edge player){
         super.compare(player);
-        System.out.println("Block Shedding:   " + blockShedding + " | " + player.blockShedding);
-        System.out.println("Finesse Moves:    " + finesseMoves + " | " + player.finesseMoves);
+        System.out.println("Block Shedding:   " + blockShedding +
+                " | " + player.blockShedding);
+        System.out.println("Finesse Moves:    " + finesseMoves +
+                " | " + player.finesseMoves);
     }
     //25 million
+    /**
+     * Calculates contract value for edge
+     * @return contract value for edge
+     */
     public double contractValue(){
         double average = (double)(getSpeed() + getStrength() + finesseMoves + blockShedding)/(75*4);
         if ((average * 12 * 1.25) == 20){
@@ -33,8 +46,12 @@ public class Edge extends Player{
         }
         return (Math.floor((average * 12 * 1.25) * 100)/100);
     }
+    /**
+     * prints the contract for the player
+     */
     public void printContract(){
-        System.out.println("The contract for this Edge (" + getName() + ") is worth: " + contractValue() + " million dollars");
+        System.out.println("The contract for this Edge " +
+                "(" + getName() + ") is worth: " + contractValue() + " million dollars");
     }
 
     public int getBlockShedding() {

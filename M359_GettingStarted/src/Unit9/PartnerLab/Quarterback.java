@@ -1,5 +1,7 @@
 package Unit9.PartnerLab;
-
+// Teacher: Denna Period 3
+// Students: Andrew Qian and Rithesh Balusu
+// Class: Subclass of the player class, this class depicts a Quarterback
 public class Quarterback extends Player{
     private int throwingAccuracy;
     private int throwingStrength;
@@ -17,17 +19,26 @@ public class Quarterback extends Player{
 
     public String toString(){
         String str = super.toString();
-        str += "This Quarterback has a throwing accuracy of " + throwingAccuracy + " and a throwing strength of " + throwingStrength + ".";
+        str += "This Quarterback has a throwing accuracy of " + throwingAccuracy
+                + " and a throwing strength of " + throwingStrength + ".";
         return str;
     }
-
+    /**
+     * Compares quarterbacks between each other
+     * @param player quarterback comparing to
+     */
     public void compare(Quarterback player){
         super.compare(player);
-        System.out.println("Throw Accuracy:   " + throwingAccuracy + " | " + player.throwingAccuracy);
-        System.out.println("Throw Strength:   " + throwingStrength + " | " + player.throwingStrength);
+        System.out.println("Throw Accuracy:   " + throwingAccuracy +
+                " | " + player.throwingAccuracy);
+        System.out.println("Throw Strength:   " + throwingStrength +
+                " | " + player.throwingStrength);
     }
     //50 million
-
+    /**
+     * Calculates contract value for quarterback
+     * @return contract value for quarterback
+     */
     public double contractValue(){
         double average = (double)(getSpeed() + getStrength() + throwingStrength + throwingAccuracy)/(75*4);
         if ((average * 30 * 1.25) == 50){
@@ -35,8 +46,12 @@ public class Quarterback extends Player{
         }
         return (Math.floor((average * 30 * 1.25) * 100)/100);
     }
+    /**
+     * prints the contract for the player
+     */
     public void printContract(){
-        System.out.println("The contract for this quarterback (" + getName() + ") is worth: " + contractValue() + " million dollars");
+        System.out.println("The contract for this quarterback " +
+                "(" + getName() + ") is worth: " + contractValue() + " million dollars");
     }
 
     public int getThrowingAccuracy() {
